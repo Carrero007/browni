@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Brownie do Pretão — Brownies artesanais gourmet. Feitos com amor, chocolate e muito sabor." />
+  <meta name="theme-color" content="#2D1B18" />
+
+  <title>Brownie do Pretão | Artesanal & Gourmet</title>
+
+  <!-- Favicon emoji (simples, funciona na maioria dos browsers) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍫</text></svg>" />
+
+  <!-- CSS principal -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════
+       NAVBAR
+  ══════════════════════════════════════════════ -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Navegação principal">
+    <a href="index.html" class="navbar__logo" aria-label="Brownie do Pretão - Página inicial">
+      Brownie do Pretão
+      <span>artesanal & gourmet</span>
+    </a>
+    <a href="cadastro.html" class="navbar__cta" aria-label="Fazer pedido agora">
+      Pedir agora
+    </a>
+  </nav>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════════
+         HERO
+    ══════════════════════════════════════════════ -->
+<section class="hero" aria-label="Apresentação principal">
+
+  <div class="hero__bg" aria-hidden="true"></div>
+  <div class="hero__line" aria-hidden="true"><span></span></div>
+
+  <!-- BANNER 16:9 -->
+  <div class="hero__banner" aria-hidden="true">
+    <img src="img/banner.png" alt="Brownie do Pretão" class="hero__banner-img" />
+    <div class="hero__banner-overlay"></div>
+  </div>
+
+  <div class="hero__content">
+    <span class="hero__tag">🍫 Feito com amor</span>
+
+    <h1 class="hero__title">
+      BROWNIE
+      <em>do Pretão</em>
+    </h1>
+
+    <p class="hero__subtitle">
+      Peça já o seu &amp; surpreenda seu paladar
+    </p>
+
+    <div class="hero__actions">
+      <a href="cadastro.html" class="btn btn--primary" aria-label="Fazer pedido de brownie">
+        Fazer meu pedido
+      </a>
+      <a href="#sobre" class="btn btn--outline" aria-label="Saber mais sobre o produto">
+        Saber mais
+      </a>
+    </div>
+  </div>
+
+</section>
+
+    <!-- ══════════════════════════════════════════════
+         SOBRE O PRODUTO
+    ══════════════════════════════════════════════ -->
+    <section class="section about" id="sobre" aria-labelledby="sobre-titulo">
+      <div class="about__inner">
+
+        <header class="section__header">
+          <p class="section__tag">O produto</p>
+          <h2 class="section__title" id="sobre-titulo">
+            Uma experiência <em>única</em>
+          </h2>
+          <p class="section__desc">
+            Cada brownie é preparado de forma artesanal, com ingredientes selecionados
+            e uma receita exclusiva que garante a textura perfeita — crocante por fora,
+            molhadinho por dentro.
+          </p>
+        </header>
+
+        <div class="about__grid">
+
+          <article class="about__card reveal" aria-label="Ingredientes selecionados">
+            
+            <div>
+              <h3 class="about__card-title">Chocolate Premium</h3>
+              <p class="about__card-text">
+                Utilizamos chocolate de alta qualidade para garantir aquele sabor
+                intenso e marcante que você vai querer de novo.
+              </p>
+            </div>
+          </article>
+
+          <article class="about__card reveal" style="transition-delay: 0.1s" aria-label="Feito na hora">
+            
+            <div>
+              <h3 class="about__card-title">Fresquinho</h3>
+              <p class="about__card-text">
+                Cada lote é preparado sob encomenda. Você recebe seu brownie
+                ainda quentinho, saído do forno.
+              </p>
+            </div>
+          </article>
+
+          <article class="about__card reveal" style="transition-delay: 0.2s" aria-label="Receita artesanal">
+            
+            <div>
+              <h3 class="about__card-title">Receita Artesanal</h3>
+              <p class="about__card-text">
+                Uma receita desenvolvida com cuidado e testada com carinho.
+                Sem industrialização, sem atalhos.
+              </p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+     FICHA NUTRICIONAL & PREÇO
+══════════════════════════════════════════════ -->
+<section class="section info-section" id="info" aria-labelledby="info-titulo">
+  <div class="info-section__inner">
+
+    <header class="section__header">
+      <p class="section__tag">Informações</p>
+      <h2 class="section__title" id="info-titulo">
+        Valor &amp; <em>Nutrição</em>
+      </h2>
+    </header>
+
+    <div class="info-grid">
+
+      <!-- Preço -->
+      <div class="info-card reveal">
+        <h3 class="info-card__label">Preço por unidade</h3>
+        <p class="info-card__value">R$ 8<span class="info-card__cents">,00</span></p>
+        <p class="info-card__note">PIX ou dinheiro físico</p>
+      </div>
+
+      <!-- Calorias -->
+      <div class="info-card reveal" style="transition-delay:0.1s">
+        
+        <h3 class="info-card__label">Calorias</h3>
+        <p class="info-card__value">~320<span class="info-card__cents"> kcal</span></p>
+        <p class="info-card__note">Por unidade (aprox. 80g)</p>
+      </div>
+
+      <!-- Peso -->
+      <div class="info-card reveal" style="transition-delay:0.2s">
+        
+        <h3 class="info-card__label">Peso por peça</h3>
+        <p class="info-card__value">~80<span class="info-card__cents">g</span></p>
+        <p class="info-card__note">Tamanho generoso</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+    <!-- ══════════════════════════════════════════════
+         DIFERENCIAIS
+    ══════════════════════════════════════════════ -->
+    <section class="section features" id="diferenciais" aria-labelledby="diferenciais-titulo">
+      <div class="features__inner">
+
+        <header class="section__header">
+          <p class="section__tag">Por que escolher</p>
+          <h2 class="section__title" id="diferenciais-titulo">
+            Nossos <em>diferenciais</em>
+          </h2>
+        </header>
+
+        <div class="features__grid">
+
+          <div class="feature-item reveal">
+            <span class="feature-item__num" aria-hidden="true">01</span>
+            <p class="feature-item__text">
+              <strong>Textura irresistível</strong> — crocante por fora, derretendo por dentro
+            </p>
+          </div>
+
+          <div class="feature-item reveal" style="transition-delay: 0.07s">
+            <span class="feature-item__num" aria-hidden="true">02</span>
+            <p class="feature-item__text">
+              <strong>Ingredientes selecionados</strong> — qualidade em cada mordida
+            </p>
+          </div>
+
+          <div class="feature-item reveal" style="transition-delay: 0.14s">
+            <span class="feature-item__num" aria-hidden="true">03</span>
+            <p class="feature-item__text">
+              <strong>Preço justo</strong> — gourmet sem pesar no bolso
+            </p>
+          </div>
+
+          <div class="feature-item reveal" style="transition-delay: 0.21s">
+            <span class="feature-item__num" aria-hidden="true">04</span>
+            <p class="feature-item__text">
+              <strong>Pedido simples</strong> — reserve em menos de 1 minuto
+            </p>
+          </div>
+
+          <div class="feature-item reveal" style="transition-delay: 0.28s">
+            <span class="feature-item__num" aria-hidden="true">05</span>
+            <p class="feature-item__text">
+              <strong>Feito sob encomenda</strong> — sempre fresquinho para você
+            </p>
+          </div>
+
+          <div class="feature-item reveal" style="transition-delay: 0.35s">
+            <span class="feature-item__num" aria-hidden="true">06</span>
+            <p class="feature-item__text">
+              <strong>Atendimento humano</strong> — direto com quem faz
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+     QUEM SOMOS
+══════════════════════════════════════════════ -->
+<section class="section quem-somos" id="quem-somos" aria-labelledby="quem-somos-titulo">
+  <div class="quem-somos__inner">
+
+    <div class="quem-somos__content">
+      <header class="section__header" style="text-align:left; margin-bottom:2rem;">
+        <p class="section__tag">Os criadores</p>
+        <h2 class="section__title" id="quem-somos-titulo">
+          Feito por quem<br><em>ama chocolate</em>
+        </h2>
+        <p class="section__desc" style="margin:0; text-align:left;">
+          Somos dois amigos apaixonados por brownie de verdade — sem industrialização,
+          sem atalho. Cada receita foi testada, ajustada e aprovada por quem entende
+          que um bom brownie muda o dia de qualquer pessoa.
+        </p>
+      </header>
+
+      <!-- Contador de pedidos -->
+      <div class="contador-wrap">
+        <div class="contador-item reveal">
+          <span class="contador-num" data-target="200">0</span>
+          <span class="contador-plus">+</span>
+          <p class="contador-label">brownies entregues</p>
+        </div>
+        <div class="contador-divider" aria-hidden="true"></div>
+        <div class="contador-item reveal" style="transition-delay:0.1s">
+          <span class="contador-num" data-target="98">0</span>
+          <span class="contador-plus">%</span>
+          <p class="contador-label">clientes satisfeitos</p>
+        </div>
+        <div class="contador-divider" aria-hidden="true"></div>
+        <div class="contador-item reveal" style="transition-delay:0.2s">
+          <span class="contador-num" data-target="1">0</span>
+          <span class="contador-plus"></span>
+          <p class="contador-label">receita exclusiva</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Avatares -->
+    <div class="quem-somos__avatares">
+      <div class="qs-avatar reveal">
+        <img src="img/avatar1.png" alt="Avatar do criador 1" class="qs-avatar__img" />
+        <p class="qs-avatar__nome">Carrero</p>
+        <p class="qs-avatar__role">Co-fundador</p>
+      </div>
+      <div class="qs-avatar reveal" style="transition-delay:0.15s; margin-top:2rem;">
+        <img src="img/avatar2.png" alt="Avatar do criador 2" class="qs-avatar__img" />
+        <p class="qs-avatar__nome">Pretão</p>
+        <p class="qs-avatar__role">Co-fundador</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+         CTA FINAL
+    ══════════════════════════════════════════════ -->
+    <section class="section cta-section" aria-labelledby="cta-titulo">
+      <div class="cta-section__inner">
+        <h2 class="cta-section__title" id="cta-titulo">
+          Pronto para o melhor brownie da sua vida?
+        </h2>
+        <p class="cta-section__text">
+          Reserve o seu agora. É simples, rápido e vale cada caloria.
+        </p>
+        <a href="cadastro.html" class="btn btn--primary" aria-label="Ir para a página de pedido">
+          Quero meu brownie 🍫
+        </a>
+      </div>
+    </section>
+
+
+<!-- ══════════════════════════════════════════════
+     FAQ
+══════════════════════════════════════════════ -->
+<section class="section faq-section" id="faq" aria-labelledby="faq-titulo">
+  <div class="faq-inner">
+
+    <header class="section__header">
+      <p class="section__tag">Dúvidas</p>
+      <h2 class="section__title" id="faq-titulo">Perguntas <em>frequentes</em></h2>
+    </header>
+
+    <div class="faq-list">
+
+      <details class="faq-item reveal">
+        <summary class="faq-item__pergunta">
+          <span>Vocês fazem entrega?</span>
+          <span class="faq-item__icon" aria-hidden="true">+</span>
+        </summary>
+        <p class="faq-item__resposta">
+          Por enquanto trabalhamos apenas com retirada no local. Em breve expandiremos
+          para entrega — fique de olho no nosso Instagram para novidades!
+        </p>
+      </details>
+
+      <details class="faq-item reveal" style="transition-delay:0.05s">
+        <summary class="faq-item__pergunta">
+          <span>Qual o prazo para meu pedido ficar pronto?</span>
+          <span class="faq-item__icon" aria-hidden="true">+</span>
+        </summary>
+        <p class="faq-item__resposta">
+          Trabalhamos sob encomenda com prazo médio de <strong>24 a 48 horas</strong>
+          após a confirmação do pedido. Você será avisado pelo WhatsApp assim que
+          estiver pronto para retirada.
+        </p>
+      </details>
+
+      <details class="faq-item reveal" style="transition-delay:0.1s">
+        <summary class="faq-item__pergunta">
+          <span>Quanto tempo o brownie dura?</span>
+          <span class="faq-item__icon" aria-hidden="true">+</span>
+        </summary>
+        <p class="faq-item__resposta">
+          Em temperatura ambiente, dura até <strong>3 dias</strong>. Na geladeira,
+          até <strong>7 dias</strong>. Dica: 15 segundos no micro-ondas deixa
+          quentinho como recém saído do forno. 🍫
+        </p>
+      </details>
+
+      <details class="faq-item reveal" style="transition-delay:0.15s">
+        <summary class="faq-item__pergunta">
+          <span>Contém glúten ou lactose?</span>
+          <span class="faq-item__icon" aria-hidden="true">+</span>
+        </summary>
+        <p class="faq-item__resposta">
+          Nosso brownie tradicional <strong>contém glúten e lactose</strong>.
+          Não temos versão sem glúten no momento. Caso tenha alguma alergia
+          específica, entre em contato antes de fazer o pedido.
+        </p>
+      </details>
+
+      <details class="faq-item reveal" style="transition-delay:0.2s">
+        <summary class="faq-item__pergunta">
+          <span>Posso cancelar ou alterar meu pedido?</span>
+          <span class="faq-item__icon" aria-hidden="true">+</span>
+        </summary>
+        <p class="faq-item__resposta">
+          Sim! Pedidos podem ser <strong>alterados ou cancelados em até 24 horas</strong>
+          após a reserva. Após esse prazo, o brownie já está sendo preparado
+          especialmente para você. 🔥
+        </p>
+      </details>
+
+      <details class="faq-item reveal" style="transition-delay:0.25s">
+        <summary class="faq-item__pergunta">
+          <span>Quais formas de pagamento vocês aceitam?</span>
+          <span class="faq-item__icon" aria-hidden="true">+</span>
+        </summary>
+        <p class="faq-item__resposta">
+          Aceitamos apenas <strong>PIX</strong> e <strong>dinheiro físico</strong>.
+          O pagamento é realizado no momento da retirada.
+        </p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__inner">
+      <p class="footer__logo">Brownie do Pretão</p>
+      <div class="footer__divider" aria-hidden="true"></div>
+      <p class="footer__tagline">Artesanal · Gourmet · Com amor</p>
+      <p class="footer__copy">© 2026 Brownie do Pretão. Feito com 🍫</p>
+      <p class="footer__copy">Desenvolvido por Pedro A. Carrero</p> 
+    </div>
+  </footer>
+
+  <!-- Script principal -->
+  <script src="script.js"></script>
+<!-- WhatsApp Flutuante -->
+
+  <a href="https://wa.me/5519997296031?text=Olá!%20Quero%20saber%20mais%20sobre%20o%20Brownie%20do%20Pretão."
+  class="whatsapp-float"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Falar no WhatsApp"
+>
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+  <span class="whatsapp-float__label">Falar conosco</span>
+</a>
+</body>
+</html>
