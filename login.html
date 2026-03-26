@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Entrar ou criar conta — Browní" />
+  <meta name="theme-color" content="#2D1B18" />
+  <title>Login | Browní</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍫</text></svg>" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="cadastro-body">
+
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Navegação principal">
+    <a href="index.html" class="navbar__logo" aria-label="Voltar para a página inicial">
+      Browní
+      <span>artesanal &amp; gourmet</span>
+    </a>
+    <a href="index.html" class="btn btn--ghost" aria-label="Voltar ao início">← Início</a>
+  </nav>
+
+  <main class="login-main" id="main-content">
+
+    <div class="login-deco" aria-hidden="true">
+      <span class="login-deco__circle login-deco__circle--1"></span>
+      <span class="login-deco__circle login-deco__circle--2"></span>
+    </div>
+
+    <div class="login-card-wrap">
+
+      <!-- TABS -->
+      <div class="login-tabs" role="tablist" aria-label="Entrar ou Criar conta">
+        <button class="login-tab active" id="tab-entrar" role="tab" aria-selected="true" aria-controls="panel-entrar">
+          Entrar
+        </button>
+        <button class="login-tab" id="tab-criar" role="tab" aria-selected="false" aria-controls="panel-criar">
+          Criar conta
+        </button>
+        <span class="login-tab__ink" aria-hidden="true"></span>
+      </div>
+
+      <!-- PAINEL: ENTRAR -->
+      <div class="login-panel active" id="panel-entrar" role="tabpanel" aria-labelledby="tab-entrar">
+        <p class="login-panel__sub">Bem-vindo de volta! 🍫</p>
+
+        <div class="form-group">
+          <label for="loginTelefone">Telefone (WhatsApp) <span aria-hidden="true">*</span></label>
+          <input type="tel" id="loginTelefone" class="form-input"
+            placeholder="(00) 00000-0000" required inputmode="tel" maxlength="15"
+            autocomplete="tel" aria-required="true" />
+        </div>
+
+        <button type="button" class="btn btn--primary btn--full" id="btnEntrar">
+          Entrar 🍫
+        </button>
+
+        <p class="login-switch">
+          Não tem conta?
+          <button type="button" class="login-switch__link" id="irParaCriar">Criar agora</button>
+        </p>
+      </div>
+
+      <!-- PAINEL: CRIAR CONTA -->
+      <div class="login-panel" id="panel-criar" role="tabpanel" aria-labelledby="tab-criar" hidden>
+        <p class="login-panel__sub">Crie sua conta e comece a colecionar selos! 🎉</p>
+
+        <div class="form-group">
+          <label for="criarNome">Nome completo <span aria-hidden="true">*</span></label>
+          <input type="text" id="criarNome" class="form-input"
+            placeholder="Seu nome" required minlength="3" autocomplete="name" aria-required="true" />
+        </div>
+
+        <div class="form-group">
+          <label for="criarTelefone">Telefone (WhatsApp) <span aria-hidden="true">*</span></label>
+          <input type="tel" id="criarTelefone" class="form-input"
+            placeholder="(00) 00000-0000" required inputmode="tel" maxlength="15"
+            autocomplete="tel" aria-required="true" />
+        </div>
+
+        <button type="button" class="btn btn--primary btn--full" id="btnCriar">
+          Criar conta 🍫
+        </button>
+
+        <p class="login-switch">
+          Já tem conta?
+          <button type="button" class="login-switch__link" id="irParaEntrar">Entrar agora</button>
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer__inner">
+      <p class="footer__logo">Browní</p>
+      <div class="footer__divider" aria-hidden="true"></div>
+      <p class="footer__tagline">Artesanal · Gourmet</p>
+      <p class="footer__copy">© 2026 Browní. Feito com 🍫</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Programa de fidelidade — Browní" />
+  <meta name="theme-color" content="#2D1B18" />
+  <title>Fidelidade | Browní</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍫</text></svg>" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Navegação principal">
+    <a href="index.html" class="navbar__logo" aria-label="Browní - Página inicial">
+      Browní
+      <span>artesanal &amp; gourmet</span>
+    </a>
+
+    <div class="navbar__right">
+      <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="sideMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- SIDE MENU -->
+  <div class="side-menu-overlay" id="sideMenuOverlay" aria-hidden="true"></div>
+  <aside class="side-menu" id="sideMenu" aria-label="Menu lateral" role="dialog" aria-modal="true" hidden>
+    <div class="side-menu__header">
+      <p class="side-menu__greeting" id="sideGreeting">Olá! 👋</p>
+      <button class="side-menu__close" id="sideMenuClose" aria-label="Fechar menu">✕</button>
+    </div>
+    <nav class="side-menu__nav">
+  <a href="index.html"        class="side-menu__link">🏠 Início</a>
+  <a href="cadastro.html"     class="side-menu__link">🍫 Fazer pedido</a>
+  <a href="meus-pedidos.html" class="side-menu__link">📋 Meus pedidos</a>
+  <a href="fidelidade.html"   class="side-menu__link--active">🎖️ Fidelidade</a>
+  <a href="#"                 class="side-menu__link" id="sideEditarPerfil">👤 Editar perfil</a>
+</nav>
+    <div class="side-menu__footer">
+  <button class="side-menu__logout" id="sideLogout" aria-label="Sair da conta">← Sair</button>
+</div>
+  </aside>
+
+  <main>
+
+    <!-- HERO FIDELIDADE -->
+    <section class="fidelidade-hero" aria-label="Programa de fidelidade">
+      <div class="fidelidade-hero__bg" aria-hidden="true"></div>
+      <div class="fidelidade-hero__content">
+        <p class="section__tag">Programa de fidelidade</p>
+        <h1 class="fidelidade-hero__title">
+          Colete selos,<br><em>ganhe brownies</em>
+        </h1>
+        <p class="fidelidade-hero__sub">
+          A cada brownie comprado, você ganha 1 selo.<br>
+          Junte 12 e ganhe um brownie grátis! 🎁
+        </p>
+      </div>
+    </section>
+
+    <!-- CARTÃO DE SELOS -->
+    <section class="section fidelidade-section" aria-labelledby="fidelidade-titulo">
+      <div class="fidelidade-inner">
+
+        <div class="fidelidade-card reveal" id="fidelidadeCard">
+
+          <!-- Header do cartão -->
+          <div class="fidelidade-card__header">
+            <div>
+              <p class="fidelidade-card__tag">Seu cartão</p>
+              <h2 class="fidelidade-card__nome" id="fidelidadeNome">—</h2>
+            </div>
+            <div class="fidelidade-card__logo">Browní</div>
+          </div>
+
+          <!-- Progresso -->
+          <div class="fidelidade-progress-wrap" aria-label="Progresso dos selos">
+            <div class="fidelidade-progress-bar-bg">
+              <div class="fidelidade-progress-bar" id="fidelidadeProgressBar" style="width:0%"></div>
+            </div>
+            <p class="fidelidade-progress-label">
+              <span id="fidelidadeSelosNum">0</span> / 12 selos
+            </p>
+          </div>
+
+          <!-- Grade de selos -->
+          <div class="selos-grid" id="selosGrid" aria-label="Grade de selos de fidelidade" role="list">
+            <!-- 12 selos gerados pelo JS -->
+          </div>
+
+          <p class="fidelidade-card__hint" id="fidelidadeHint">
+            Faça login para ver seus selos 🍫
+          </p>
+
+        </div>
+
+        <!-- Brownies ganhos -->
+        <div class="brownies-ganhos reveal" id="browniesGanhosWrap" style="transition-delay:0.15s" aria-live="polite">
+          <div class="brownies-ganhos__icon" aria-hidden="true">🎁</div>
+          <div>
+            <p class="brownies-ganhos__label">Brownies grátis ganhos</p>
+            <p class="brownies-ganhos__num" id="browniesGanhosNum">0</p>
+          </div>
+        </div>
+
+        <!-- Como funciona -->
+        <div class="como-funciona reveal" style="transition-delay:0.25s">
+          <h3 class="como-funciona__title">Como funciona?</h3>
+          <div class="como-funciona__steps">
+            <div class="cf-step">
+              <span class="cf-step__num">1</span>
+              <p class="cf-step__text"><strong>Peça seu brownie</strong> pela plataforma normalmente.</p>
+            </div>
+            <div class="cf-step">
+              <span class="cf-step__num">2</span>
+              <p class="cf-step__text"><strong>Ganhe 1 selo</strong> por cada brownie comprado.</p>
+            </div>
+            <div class="cf-step">
+              <span class="cf-step__num">3</span>
+              <p class="cf-step__text"><strong>Com 12 selos</strong>, ganhe um brownie completamente grátis! 🎉</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="fidelidade-cta reveal" style="transition-delay:0.35s">
+          <a href="cadastro.html" class="btn btn--primary">Fazer pedido agora 🍫</a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL: EDITAR PERFIL -->
+  <div class="modal-overlay" id="modalEditarPerfil" role="dialog" aria-modal="true" aria-labelledby="modalEditarPerfilTitulo">
+    <div class="modal modal--form">
+      <div class="modal__header">
+        <div class="modal__header-icon" aria-hidden="true">👤</div>
+        <div>
+          <h2 class="modal__title" id="modalEditarPerfilTitulo">Editar perfil</h2>
+          <p class="modal__subtitle">Atualize seu nome</p>
+        </div>
+        <button type="button" class="modal__x" onclick="fecharModal('modalEditarPerfil')" aria-label="Fechar">✕</button>
+      </div>
+      <div class="modal__divider"></div>
+      <form id="formEditarPerfil" style="padding:1.5rem 2rem 1.75rem">
+        <div class="form-group">
+          <label for="editPerfilNome">Nome completo <span aria-hidden="true">*</span></label>
+          <input type="text" id="editPerfilNome" class="form-input" placeholder="Seu nome" required minlength="3" />
+        </div>
+        <div class="form-group">
+          <label for="editPerfilTelefone">Telefone</label>
+          <input type="tel" id="editPerfilTelefone" class="form-input" readonly style="opacity:0.55;cursor:not-allowed" />
+          <p class="form-hint">O telefone é o identificador da conta e não pode ser alterado.</p>
+        </div>
+        <div class="modal__divider" style="margin:1rem -2rem"></div>
+        <div class="modal__form-actions" style="padding:1rem 0 0">
+          <button type="button" class="btn btn--outline" onclick="fecharModal('modalEditarPerfil')">Cancelar</button>
+          <button type="submit" class="btn btn--primary" id="btnSalvarPerfil">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: LOGOUT -->
+  <div class="modal-overlay" id="modalLogout" role="dialog" aria-modal="true" aria-labelledby="modalLogoutTitulo">
+    <div class="modal">
+      <div class="modal__icon" aria-hidden="true">👋</div>
+      <h2 class="modal__title" id="modalLogoutTitulo">Sair da conta?</h2>
+      <p class="modal__text">Tem certeza que deseja sair? Você precisará fazer login novamente para fazer pedidos.</p>
+      <div class="modal__actions">
+        <button type="button" class="btn btn--outline" onclick="fecharModal('modalLogout')">Cancelar</button>
+        <button type="button" class="btn btn--danger" id="btnConfirmarLogout">Sim, sair</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: WPP -->
+  <div class="modal-overlay" id="modalWhatsapp" role="dialog" aria-modal="true" aria-labelledby="modalWhatsappTitulo">
+    <div class="modal">
+      <div class="modal__icon" aria-hidden="true">💬</div>
+      <h2 class="modal__title" id="modalWhatsappTitulo">Falar no WhatsApp?</h2>
+      <p class="modal__text">Deseja tirar alguma dúvida com a gente pelo WhatsApp?</p>
+      <div class="modal__actions">
+        <button type="button" class="btn btn--outline" onclick="fecharModal('modalWhatsapp')">Não, obrigado</button>
+        <a href="https://wa.me/5519997296031?text=Olá!%20Quero%20saber%20mais%20sobre%20o%20Browní."
+           class="btn btn--primary" target="_blank" rel="noopener noreferrer"
+           onclick="fecharModal('modalWhatsapp')">
+          Sim, abrir WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer__inner">
+      <p class="footer__logo">Browní</p>
+      <div class="footer__divider" aria-hidden="true"></div>
+      <p class="footer__tagline">Artesanal · Gourmet</p>
+      <p class="footer__copy">© 2026 Browní. Feito com 🍫</p>
+      <p class="footer__copy">Desenvolvido por Pedro A. Carrero</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="auth.js"></script>
+  <script src="fidelidade.js"></script>
+</body>
+</html>

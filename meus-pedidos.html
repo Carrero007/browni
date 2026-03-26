@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Meus pedidos — Browní" />
+  <meta name="theme-color" content="#2D1B18" />
+  <title>Meus Pedidos | Browní</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍫</text></svg>" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Navegação principal">
+    <a href="index.html" class="navbar__logo" aria-label="Browní - Página inicial">
+      Browní
+      <span>artesanal &amp; gourmet</span>
+    </a>
+    <div class="navbar__right">
+      <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="sideMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- SIDE MENU -->
+  <div class="side-menu-overlay" id="sideMenuOverlay" aria-hidden="true"></div>
+  <aside class="side-menu" id="sideMenu" aria-label="Menu lateral" role="dialog" aria-modal="true" hidden>
+    <div class="side-menu__header">
+      <p class="side-menu__greeting" id="sideGreeting">Olá! 👋</p>
+      <button class="side-menu__close" id="sideMenuClose" aria-label="Fechar menu">✕</button>
+    </div>
+    <nav class="side-menu__nav">
+      <a href="index.html" class="side-menu__link">🏠 Início</a>
+      <a href="cadastro.html" class="side-menu__link">🍫 Fazer pedido</a>
+      <a href="meus-pedidos.html" class="side-menu__link side-menu__link--active">📋 Meus pedidos</a>
+      <a href="fidelidade.html" class="side-menu__link">🎖️ Fidelidade</a>
+      <a href="#" class="side-menu__link" id="sideEditarPerfil">👤 Editar perfil</a>
+    </nav>
+    <div class="side-menu__footer">
+      <button class="side-menu__logout" id="sideLogout" aria-label="Sair da conta">← Sair</button>
+    </div>
+  </aside>
+
+  <main>
+
+    <!-- HEADER DA PÁGINA -->
+    <section class="meus-pedidos-hero" aria-label="Meus pedidos">
+      <div class="meus-pedidos-hero__bg" aria-hidden="true"></div>
+      <div class="meus-pedidos-hero__content">
+        <p class="section__tag">Histórico</p>
+        <h1 class="meus-pedidos-hero__title">
+          Meus <em>pedidos</em>
+        </h1>
+        <p class="meus-pedidos-hero__sub" id="heroSub">
+          Acompanhe e gerencie suas reservas 🍫
+        </p>
+      </div>
+    </section>
+
+    <!-- LISTA DE PEDIDOS -->
+    <section class="section meus-pedidos-section" aria-labelledby="pedidos-titulo">
+      <div class="meus-pedidos-inner">
+
+        <!-- Estado: carregando -->
+        <div class="pedidos-loading" id="pedidosLoading" aria-live="polite">
+          <div class="pedidos-loading__spinner" aria-hidden="true"></div>
+          <p>Buscando seus pedidos…</p>
+        </div>
+
+        <!-- Estado: vazio -->
+        <div class="pedidos-vazio" id="pedidosVazio" hidden aria-live="polite">
+          <div class="pedidos-vazio__icon" aria-hidden="true">🍫</div>
+          <h3 class="pedidos-vazio__title">Nenhum pedido ainda</h3>
+          <p class="pedidos-vazio__sub">Que tal garantir seu primeiro brownie?</p>
+          <a href="cadastro.html" class="btn btn--primary" style="margin-top:1.5rem">
+            Fazer pedido agora
+          </a>
+        </div>
+
+        <!-- Lista -->
+        <div class="pedidos-lista" id="pedidosLista" hidden aria-label="Lista de pedidos" role="list">
+          <!-- Cards gerados pelo JS -->
+        </div>
+
+        <!-- Botão novo pedido (aparece quando não há pendente) -->
+        <div class="pedidos-novo-wrap" id="pedidosNovoWrap" hidden>
+          <a href="cadastro.html" class="btn btn--primary">
+            + Novo pedido 🍫
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════ MODAIS ══════════════════ -->
+
+  <!-- Modal: Editar pedido -->
+  <div class="modal-overlay" id="modalEditarPedido" role="dialog" aria-modal="true" aria-labelledby="modalEditarPedidoTitulo">
+    <div class="modal modal--form">
+      <div class="modal__header">
+        <div class="modal__header-icon" aria-hidden="true">✏️</div>
+        <div>
+          <h2 class="modal__title" id="modalEditarPedidoTitulo">Editar pedido</h2>
+          <p class="modal__subtitle">Apenas pedidos pendentes podem ser editados</p>
+        </div>
+        <button type="button" class="modal__x" onclick="fecharModal('modalEditarPedido')" aria-label="Fechar">✕</button>
+      </div>
+      <div class="modal__divider"></div>
+      <form id="formEditarPedido" style="padding:1.5rem 2rem 1.75rem">
+        <div class="form-group">
+          <label for="mpEditNome">Nome completo <span aria-hidden="true">*</span></label>
+          <input type="text" id="mpEditNome" class="form-input" placeholder="Seu nome" required minlength="3" />
+        </div>
+        <div class="form-group">
+          <label for="mpEditInstagram">Instagram</label>
+          <input type="text" id="mpEditInstagram" class="form-input" placeholder="@seu_perfil" />
+        </div>
+        <div class="form-group">
+          <label for="mpEditQuantidade">Quantidade <span aria-hidden="true">*</span></label>
+          <div class="qty-wrapper" role="group" aria-label="Quantidade">
+            <button type="button" class="qty-btn" id="mpEditDecrementar" aria-label="Diminuir">−</button>
+            <input type="number" id="mpEditQuantidade" class="qty-input" value="1" min="1" max="99" readonly />
+            <button type="button" class="qty-btn" id="mpEditIncrementar" aria-label="Aumentar">+</button>
+          </div>
+        </div>
+        <div class="modal__divider" style="margin:0.5rem 0 1.25rem"></div>
+        <div class="modal__form-actions" style="padding:0">
+          <button type="button" class="btn btn--outline" onclick="fecharModal('modalEditarPedido')">Cancelar</button>
+          <button type="submit" class="btn btn--primary" id="mpBtnSalvar">Salvar alterações</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Confirmar exclusão -->
+  <div class="modal-overlay" id="modalExcluirPedido" role="dialog" aria-modal="true" aria-labelledby="modalExcluirPedidoTitulo">
+    <div class="modal modal--danger">
+      <div class="modal__header">
+        <div class="modal__header-icon modal__header-icon--danger" aria-hidden="true">🗑️</div>
+        <div>
+          <h2 class="modal__title" id="modalExcluirPedidoTitulo">Cancelar pedido</h2>
+          <p class="modal__subtitle">Esta ação não pode ser desfeita</p>
+        </div>
+        <button type="button" class="modal__x" onclick="fecharModal('modalExcluirPedido')" aria-label="Fechar">✕</button>
+      </div>
+      <div class="modal__divider"></div>
+      <div id="mpResumoExclusao" style="padding:1.25rem 2rem 0"></div>
+      <p class="modal__text modal__text--danger">
+        Tem certeza que quer cancelar? 😢<br>
+        Seus selos referentes a este pedido serão devolvidos.
+      </p>
+      <div class="modal__divider"></div>
+      <div class="modal__form-actions">
+        <button type="button" class="btn btn--outline" onclick="fecharModal('modalExcluirPedido')">← Manter</button>
+        <button type="button" class="btn btn--danger" id="mpBtnConfirmarExclusao">Cancelar pedido</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Sucesso exclusão -->
+  <div class="modal-overlay" id="modalPedidoCancelado" role="dialog" aria-modal="true" aria-labelledby="modalPedidoCanceladoTitulo">
+    <div class="modal">
+      <div class="modal__icon" aria-hidden="true">✔️</div>
+      <h2 class="modal__title" id="modalPedidoCanceladoTitulo">Pedido cancelado</h2>
+      <p class="modal__text">Sua reserva foi removida.<br>Esperamos te ver em breve! 🍫</p>
+      <div class="modal__actions">
+        <button type="button" class="btn btn--outline" onclick="fecharModal('modalPedidoCancelado'); carregarPedidos();">Ver pedidos</button>
+        <a href="cadastro.html" class="btn btn--primary">Novo pedido</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Sucesso edição -->
+  <div class="modal-overlay" id="modalPedidoAtualizado" role="dialog" aria-modal="true" aria-labelledby="modalPedidoAtualizadoTitulo">
+    <div class="modal">
+      <div class="modal__icon" aria-hidden="true">✅</div>
+      <h2 class="modal__title" id="modalPedidoAtualizadoTitulo">Pedido atualizado!</h2>
+      <p class="modal__text">Suas alterações foram salvas com sucesso. 🍫</p>
+      <div class="modal__actions">
+        <button type="button" class="btn btn--primary" onclick="fecharModal('modalPedidoAtualizado'); carregarPedidos();">Ver pedidos</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Logout -->
+  <div class="modal-overlay" id="modalLogout" role="dialog" aria-modal="true" aria-labelledby="modalLogoutTitulo">
+    <div class="modal">
+      <div class="modal__icon" aria-hidden="true">👋</div>
+      <h2 class="modal__title" id="modalLogoutTitulo">Sair da conta?</h2>
+      <p class="modal__text">Tem certeza que deseja sair?</p>
+      <div class="modal__actions">
+        <button type="button" class="btn btn--outline" onclick="fecharModal('modalLogout')">Cancelar</button>
+        <button type="button" class="btn btn--danger" id="btnConfirmarLogout">Sim, sair</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Editar Perfil -->
+  <div class="modal-overlay" id="modalEditarPerfil" role="dialog" aria-modal="true" aria-labelledby="modalEditarPerfilTitulo">
+    <div class="modal modal--form">
+      <div class="modal__header">
+        <div class="modal__header-icon" aria-hidden="true">👤</div>
+        <div>
+          <h2 class="modal__title" id="modalEditarPerfilTitulo">Editar perfil</h2>
+          <p class="modal__subtitle">Atualize seu nome</p>
+        </div>
+        <button type="button" class="modal__x" onclick="fecharModal('modalEditarPerfil')" aria-label="Fechar">✕</button>
+      </div>
+      <div class="modal__divider"></div>
+      <form id="formEditarPerfil" style="padding:1.5rem 2rem 1.75rem">
+        <div class="form-group">
+          <label for="editPerfilNome">Nome completo <span aria-hidden="true">*</span></label>
+          <input type="text" id="editPerfilNome" class="form-input" placeholder="Seu nome" required minlength="3" />
+        </div>
+        <div class="form-group">
+          <label for="editPerfilTelefone">Telefone</label>
+          <input type="tel" id="editPerfilTelefone" class="form-input" readonly style="opacity:0.55;cursor:not-allowed" />
+          <p class="form-hint">O telefone é o identificador da conta e não pode ser alterado.</p>
+        </div>
+        <div class="modal__divider" style="margin:1rem -2rem"></div>
+        <div class="modal__form-actions" style="padding:1rem 0 0">
+          <button type="button" class="btn btn--outline" onclick="fecharModal('modalEditarPerfil')">Cancelar</button>
+          <button type="submit" class="btn btn--primary" id="btnSalvarPerfil">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer__inner">
+      <p class="footer__logo">Browní</p>
+      <div class="footer__divider" aria-hidden="true"></div>
+      <p class="footer__tagline">Artesanal · Gourmet</p>
+      <p class="footer__copy">© 2026 Browní. Feito com 🍫</p>
+      <p class="footer__copy">Desenvolvido por Pedro A. Carrero</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="auth.js"></script>
+  <script src="meus-pedidos.js"></script>
+</body>
+</html>

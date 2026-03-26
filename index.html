@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Browní — Brownies artesanais gourmet. Feitos com amor, chocolate e muito sabor." />
+  <meta name="theme-color" content="#2D1B18" />
+
+  <title>Browní | Brownies Gourmet</title>
+
+  <!-- Favicon emoji (simples, funciona na maioria dos browsers) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍫</text></svg>" />
+
+  <!-- CSS principal -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════
+       NAVBAR
+  ══════════════════════════════════════════════ -->
+<nav class="navbar" id="navbar" role="navigation" aria-label="Navegação principal">
+  <a href="index.html" class="navbar__logo" aria-label="Browní - Página inicial">
+    Browní
+    <span>artesanal &amp; gourmet</span>
+  </a>
+
+  <div class="navbar__right">
+    <a href="cadastro.html" class="navbar__cta" aria-label="Fazer pedido agora">
+      Pedir agora
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="sideMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- SIDE MENU OVERLAY -->
+<div class="side-menu-overlay" id="sideMenuOverlay" aria-hidden="true"></div>
+
+<!-- SIDE MENU -->
+<aside class="side-menu" id="sideMenu" aria-label="Menu lateral" role="dialog" aria-modal="true" hidden>
+  <div class="side-menu__header">
+    <p class="side-menu__greeting" id="sideGreeting">Olá! 👋</p>
+    <button class="side-menu__close" id="sideMenuClose" aria-label="Fechar menu">✕</button>
+  </div>
+<nav class="side-menu__nav">
+  <a href="index.html"        class="side-menu__link--active">🏠 Início</a>
+  <a href="cadastro.html"     class="side-menu__link">🍫 Fazer pedido</a>
+  <a href="meus-pedidos.html" class="side-menu__link">📋 Meus pedidos</a>
+  <a href="fidelidade.html"   class="side-menu__link">🎖️ Fidelidade</a>
+  <a href="#"                 class="side-menu__link" id="sideEditarPerfil">👤 Editar perfil</a>
+</nav>
+  <div class="side-menu__footer">
+  <button class="side-menu__logout" id="sideLogout" aria-label="Sair da conta">← Sair</button>
+</div>
+</aside>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════════
+         HERO
+    ══════════════════════════════════════════════ -->
+<section class="hero" aria-label="Apresentação principal">
+
+  <div class="hero__bg" aria-hidden="true"></div>
+  <div class="hero__line" aria-hidden="true"><span></span></div>
+
+  <!-- BANNER 16:9 -->
+  <div class="hero__banner" aria-hidden="true">
+    <img src="img/banner.png" alt="Brownie do Pretão" class="hero__banner-img" />
+    <div class="hero__banner-overlay"></div>
+  </div>
+
+  <div class="hero__content">
+    
+  <h1 class="hero__title">
+      <em>BROWNÍ</em>
+      
+    </h1>
+
+    <p class="hero__subtitle">
+      Peça já o seu &amp; surpreenda seu paladar
+    </p>
+
+    <div class="hero__actions">
+      <a href="cadastro.html" class="btn btn--primary" aria-label="Fazer pedido de brownie">
+        Fazer meu pedido
+      </a>
+      <a href="#sobre" class="btn btn--outline" aria-label="Saber mais sobre o produto">
+        Saber mais
+      </a>
+    </div>
+  </div>
+
+</section>
+
+    <!-- ══════════════════════════════════════════════
+         SOBRE O PRODUTO
+    ══════════════════════════════════════════════ -->
+    <section class="section about" id="sobre" aria-labelledby="sobre-titulo">
+      <div class="about__inner">
+
+        <header class="section__header">
+          <p class="section__tag">O produto</p>
+          <h2 class="section__title" id="sobre-titulo">
+            Uma experiência <em>única</em>
+          </h2>
+          <p class="section__desc">
+            Cada brownie é preparado de forma artesanal, com ingredientes selecionados
+            e uma receita exclusiva que garante a textura perfeita — crocante por fora,
+            molhadinho por dentro.
+          </p>
+        </header>
+
+        <div class="about__grid">
+
+          <article class="about__card reveal" aria-label="Ingredientes selecionados">
+            
+            <div>
+              <h3 class="about__card-title">Chocolate Premium</h3>
+              <p class="about__card-text">
+                Utilizamos chocolate de alta qualidade para garantir aquele sabor
+                intenso e marcante que você vai querer de novo.
+              </p>
+            </div>
+          </article>
+
+          <article class="about__card reveal" style="transition-delay: 0.1s" aria-label="Feito na hora">
+            
+            <div>
+              <h3 class="about__card-title">Fresquinho</h3>
+              <p class="about__card-text">
+                Cada lote é preparado sob encomenda. Você recebe seu brownie como se tivesse acabado de sair do forno.
+              </p>
+            </div>
+          </article>
+
+          <article class="about__card reveal" style="transition-delay: 0.2s" aria-label="Receita artesanal">
+            
+            <div>
+              <h3 class="about__card-title">Receita Artesanal</h3>
+              <p class="about__card-text">
+                Uma receita desenvolvida com cuidado e testada com carinho.
+                Sem industrialização, sem atalhos.
+              </p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+     FICHA NUTRICIONAL & PREÇO
+══════════════════════════════════════════════ -->
+<section class="section info-section" id="info" aria-labelledby="info-titulo">
+  <div class="info-section__inner">
+
+    <header class="section__header">
+      <p class="section__tag">Informações</p>
+      <h2 class="section__title" id="info-titulo">
+        Valor &amp; <em>Nutrição</em>
+      </h2>
+    </header>
+
+    <div class="info-grid">
+
+      <!-- Preço -->
+      <div class="info-card reveal">
+        <h3 class="info-card__label">Preço por unidade</h3>
+        <p class="info-card__value">R$ 7<span class="info-card__cents">,00</span></p>
+        <p class="info-card__note">PIX ou dinheiro físico</p>
+      </div>
+
+      <!-- Calorias -->
+      <div class="info-card reveal" style="transition-delay:0.1s">
+        
+        <h3 class="info-card__label">Calorias</h3>
+        <p class="info-card__value">~217<span class="info-card__cents"> kcal</span></p>
+        <p class="info-card__note">Por unidade (aprox. 90g)</p>
+      </div>
+
+      <!-- Peso -->
+      <div class="info-card reveal" style="transition-delay:0.2s">
+        
+        <h3 class="info-card__label">Peso por peça</h3>
+        <p class="info-card__value">~90<span class="info-card__cents">g</span></p>
+        <p class="info-card__note">Tamanho generoso</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+    <!-- ══════════════════════════════════════════════
+         DIFERENCIAIS
+    ══════════════════════════════════════════════ -->
+    <section class="section features" id="diferenciais" aria-labelledby="diferenciais-titulo">
+      <div class="features__inner">
+
+        <header class="section__header">
+          <p class="section__tag">Por que escolher</p>
+          <h2 class="section__title" id="diferenciais-titulo">
+            Nossos <em>diferenciais</em>
+          </h2>
+        </header>
+
+        <div class="features__grid">
+
+          <div class="feature-item reveal">
+            <span class="feature-item__num" aria-hidden="true">01</span>
+            <p class="feature-item__text">
+              <strong>Textura irresistível</strong> — crocante por fora, derretendo por dentro
+            </p>
+          </div>
+
+          <div class="feature-item reveal" style="transition-delay: 0.07s">
+            <span class="feature-item__num" aria-hidden="true">02</span>
+            <p class="feature-item__text">
+              <strong>Ingredientes selecionados</strong> — qualidade em cada mordida
+            </p>
+          </div>
+
+          <div class="feature-item reveal" style="transition-delay: 0.14s">
+            <span class="feature-item__num" aria-hidden="true">03</span>
+            <p class="feature-item__text">
+              <strong>Preço justo</strong> — gourmet sem pesar no bolso
+            </p>
+          </div>
+
+          <div class="feature-item reveal" style="transition-delay: 0.21s">
+            <span class="feature-item__num" aria-hidden="true">04</span>
+            <p class="feature-item__text">
+              <strong>Pedido simples</strong> — reserve em menos de 1 minuto
+            </p>
+          </div>
+
+          <div class="feature-item reveal" style="transition-delay: 0.28s">
+            <span class="feature-item__num" aria-hidden="true">05</span>
+            <p class="feature-item__text">
+              <strong>Feito sob encomenda</strong> — sempre fresquinho para você
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+     QUEM SOMOS
+══════════════════════════════════════════════ -->
+<section class="section quem-somos" id="quem-somos" aria-labelledby="quem-somos-titulo">
+  <div class="quem-somos__inner">
+
+    <div class="quem-somos__content">
+      <header class="section__header" style="text-align:left; margin-bottom:2rem;">
+        <p class="section__tag">Os criadores</p>
+        <h2 class="section__title" id="quem-somos-titulo">
+          Feito por quem<br><em>ama chocolate</em>
+        </h2>
+        <p class="section__desc" style="margin:0; text-align:left;">
+          Somos dois amigos apaixonados por brownie de verdade — sem industrialização,
+          sem atalho. Cada receita foi testada, ajustada e aprovada por quem entende
+          que um bom brownie muda o dia de qualquer pessoa.
+        </p>
+      </header>
+
+      <!-- Contador de pedidos 
+      <div class="contador-wrap">
+        <div class="contador-item reveal">
+          <span class="contador-num" data-target="200">0</span>
+          <span class="contador-plus">+</span>
+          <p class="contador-label">brownies entregues</p>
+        </div>
+        <div class="contador-divider" aria-hidden="true"></div>
+        <div class="contador-item reveal" style="transition-delay:0.1s">
+          <span class="contador-num" data-target="98">0</span>
+          <span class="contador-plus">%</span>
+          <p class="contador-label">clientes satisfeitos</p>
+        </div>
+        <div class="contador-divider" aria-hidden="true"></div>
+        <div class="contador-item reveal" style="transition-delay:0.2s">
+          <span class="contador-num" data-target="1">0</span>
+          <span class="contador-plus"></span>
+          <p class="contador-label">receita exclusiva</p>
+        </div>
+      </div>-->
+    </div>
+
+    <!-- Avatares -->
+    <div class="quem-somos__avatares">
+      <div class="qs-avatar reveal">
+        <img src="img/avatar1.png" alt="Avatar do criador 1" class="qs-avatar__img" />
+        <p class="qs-avatar__nome">Carrero</p>
+        <p class="qs-avatar__role">Fundador</p>
+      </div>
+      <div class="qs-avatar reveal" style="transition-delay:0.15s; margin-top:2rem;">
+        <img src="img/avatar2.png" alt="Avatar do criador 2" class="qs-avatar__img" />
+        <p class="qs-avatar__nome">Pretão</p>
+        <p class="qs-avatar__role">Fundador</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+         CTA FINAL
+    ══════════════════════════════════════════════ -->
+    <section class="section cta-section" aria-labelledby="cta-titulo">
+      <div class="cta-section__inner">
+        <h2 class="cta-section__title" id="cta-titulo">
+          Pronto para o melhor brownie da sua vida?
+        </h2>
+        <p class="cta-section__text">
+          Reserve o seu agora. É simples, rápido e vale cada caloria.
+        </p>
+        <a href="cadastro.html" class="btn btn--primary" aria-label="Ir para a página de pedido">
+          Quero meu brownie 🍫
+        </a>
+      </div>
+    </section>
+
+
+<!-- ══════════════════════════════════════════════
+     FAQ
+══════════════════════════════════════════════ -->
+<section class="section faq-section" id="faq" aria-labelledby="faq-titulo">
+  <div class="faq-inner">
+
+    <header class="section__header">
+      <p class="section__tag">Dúvidas</p>
+      <h2 class="section__title" id="faq-titulo">Perguntas <em>frequentes</em></h2>
+    </header>
+
+    <div class="faq-list">
+
+      <!-- <details class="faq-item reveal">
+        <summary class="faq-item__pergunta">
+          <span>Vocês fazem entrega?</span>
+          <span class="faq-item__icon" aria-hidden="true">+</span>
+        </summary>
+        <p class="faq-item__resposta">
+          Por enquanto trabalhamos apenas com retirada no local. Em breve expandiremos
+          para entrega — fique de olho no nosso Instagram para novidades!
+        </p>
+      </details> -->
+
+      <details class="faq-item reveal" style="transition-delay:0.05s">
+        <summary class="faq-item__pergunta">
+          <span>Qual o prazo para meu pedido ficar pronto?</span>
+          <span class="faq-item__icon" aria-hidden="true">+</span>
+        </summary>
+        <p class="faq-item__resposta">
+          Trabalhamos sob encomenda com prazo médio de <strong>24 a 48 horas</strong>
+          após a confirmação do pedido. Você será avisado pelo WhatsApp assim que
+          estiver pronto para retirada.
+        </p>
+      </details>
+
+      <details class="faq-item reveal" style="transition-delay:0.1s">
+        <summary class="faq-item__pergunta">
+          <span>Quanto tempo o brownie dura?</span>
+          <span class="faq-item__icon" aria-hidden="true">+</span>
+        </summary>
+        <p class="faq-item__resposta">
+          Em temperatura ambiente, dura até <strong>3 dias</strong>. Na geladeira,
+          até <strong>7 dias</strong>. Dica: 15 segundos no micro-ondas deixa
+          quentinho como recém saído do forno. 🍫
+        </p>
+      </details>
+
+      <!-- <details class="faq-item reveal" style="transition-delay:0.15s">
+        <summary class="faq-item__pergunta">
+          <span>Contém glúten ou lactose?</span>
+          <span class="faq-item__icon" aria-hidden="true">+</span>
+        </summary>
+        <p class="faq-item__resposta">
+          Nosso brownie tradicional <strong>contém glúten e lactose</strong>.
+          Não temos versão sem glúten no momento. Caso tenha alguma alergia
+          específica, entre em contato antes de fazer o pedido.
+        </p>
+      </details> -->
+
+      <details class="faq-item reveal" style="transition-delay:0.2s">
+        <summary class="faq-item__pergunta">
+          <span>Posso cancelar ou alterar meu pedido?</span>
+          <span class="faq-item__icon" aria-hidden="true">+</span>
+        </summary>
+        <p class="faq-item__resposta">
+          Sim! Pedidos podem ser <strong>alterados ou cancelados em até 24 horas</strong>
+          após a reserva. Após esse prazo, o brownie já está sendo preparado
+          especialmente para você. 🔥
+        </p>
+      </details>
+
+      <details class="faq-item reveal" style="transition-delay:0.25s">
+        <summary class="faq-item__pergunta">
+          <span>Quais formas de pagamento vocês aceitam?</span>
+          <span class="faq-item__icon" aria-hidden="true">+</span>
+        </summary>
+        <p class="faq-item__resposta">
+          Aceitamos apenas <strong>PIX</strong> e <strong>dinheiro físico</strong>.
+          O pagamento é realizado no momento da retirada.
+        </p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__inner">
+      <p class="footer__logo">Browní</p>
+      <div class="footer__divider" aria-hidden="true"></div>
+      <p class="footer__tagline">Artesanal · Gourmet</p>
+      <p class="footer__copy">© 2026 Browní. Feito com 🍫</p>
+      <p class="footer__copy">Desenvolvido por Pedro A. Carrero</p> 
+    </div>
+  </footer>
+
+<!-- MODAL: LOGOUT -->
+<div class="modal-overlay" id="modalLogout" role="dialog" aria-modal="true" aria-labelledby="modalLogoutTitulo">
+  <div class="modal">
+    <div class="modal__icon" aria-hidden="true">👋</div>
+    <h2 class="modal__title" id="modalLogoutTitulo">Sair da conta?</h2>
+    <p class="modal__text">Tem certeza que deseja sair? Você precisará fazer login novamente para fazer pedidos.</p>
+    <div class="modal__actions">
+      <button type="button" class="btn btn--outline" onclick="fecharModal('modalLogout')">Cancelar</button>
+      <button type="button" class="btn btn--danger" id="btnConfirmarLogout">Sim, sair</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: EDITAR PERFIL -->
+<div class="modal-overlay" id="modalEditarPerfil" role="dialog" aria-modal="true" aria-labelledby="modalEditarPerfilTitulo">
+  <div class="modal modal--form">
+    <div class="modal__header">
+      <div class="modal__header-icon" aria-hidden="true">👤</div>
+      <div>
+        <h2 class="modal__title" id="modalEditarPerfilTitulo">Editar perfil</h2>
+        <p class="modal__subtitle">Atualize seu nome</p>
+      </div>
+      <button type="button" class="modal__x" onclick="fecharModal('modalEditarPerfil')" aria-label="Fechar">✕</button>
+    </div>
+    <div class="modal__divider"></div>
+    <form id="formEditarPerfil" style="padding:1.5rem 2rem 1.75rem">
+      <div class="form-group">
+        <label for="editPerfilNome">Nome completo <span aria-hidden="true">*</span></label>
+        <input type="text" id="editPerfilNome" class="form-input" placeholder="Seu nome" required minlength="3" />
+      </div>
+      <div class="form-group">
+        <label for="editPerfilTelefone">Telefone</label>
+        <input type="tel" id="editPerfilTelefone" class="form-input" readonly style="opacity:0.55;cursor:not-allowed" />
+        <p class="form-hint">O telefone é o identificador da conta e não pode ser alterado.</p>
+      </div>
+      <div class="modal__divider" style="margin:1rem -2rem"></div>
+      <div class="modal__form-actions" style="padding:1rem 0 0">
+        <button type="button" class="btn btn--outline" onclick="fecharModal('modalEditarPerfil')">Cancelar</button>
+        <button type="submit" class="btn btn--primary" id="btnSalvarPerfil">Salvar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="script.js"></script>
+<script src="auth.js"></script>
+
+</body>
+</html>
