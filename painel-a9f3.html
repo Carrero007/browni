@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin | Browní</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brown-dark:   #2D1B18;
+      --brown-mid:    #6B3A2A;
+      --brown-light:  #C4845A;
+      --cream:        #FFF8F0;
+      --cream-dark:   #F5EDE0;
+      --green:        #1A7A4A;
+      --green-light:  #E8F5EE;
+      --amber:        #B56B00;
+      --amber-light:  #FFF3DC;
+      --red:          #B91C1C;
+      --red-light:    #FEE2E2;
+      --gray:         #6B7280;
+      --gray-light:   #F3F4F6;
+      --border:       rgba(0,0,0,0.1);
+      --shadow:       0 2px 12px rgba(45,27,24,0.12);
+      --radius:       12px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--cream-dark);
+      color: var(--brown-dark);
+      min-height: 100vh;
+    }
+
+    /* ── LOGIN ── */
+    #loginScreen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      background: var(--brown-dark);
+    }
+
+    .login-box {
+      background: white;
+      border-radius: var(--radius);
+      padding: 2.5rem 2rem;
+      width: 100%;
+      max-width: 360px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .login-box h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--brown-dark);
+      margin-bottom: 0.25rem;
+    }
+
+    .login-box p {
+      color: var(--gray);
+      font-size: 0.875rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .login-box input[type="password"] {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .login-box input[type="password"]:focus {
+      border-color: var(--brown-mid);
+    }
+
+    .login-box .error {
+      color: var(--red);
+      font-size: 0.8rem;
+      margin-bottom: 0.75rem;
+      min-height: 1.2rem;
+    }
+
+    /* ── BOTÕES ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+
+    .btn:hover { opacity: 0.88; }
+    .btn:active { transform: scale(0.97); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .btn--primary {
+      background: var(--brown-mid);
+      color: white;
+      width: 100%;
+      justify-content: center;
+      padding: 0.75rem;
+      font-size: 1rem;
+    }
+
+    .btn--green {
+      background: var(--green);
+      color: white;
+      font-size: 0.8rem;
+      padding: 0.45rem 0.9rem;
+    }
+
+    .btn--red {
+      background: var(--red);
+      color: white;
+      font-size: 0.8rem;
+      padding: 0.45rem 0.9rem;
+    }
+
+    .btn--ghost {
+      background: transparent;
+      color: var(--brown-mid);
+      border: 1.5px solid var(--brown-mid);
+      font-size: 0.8rem;
+      padding: 0.45rem 0.9rem;
+    }
+
+    .btn--wpp {
+      background: #25D366;
+      color: white;
+      font-size: 0.8rem;
+      padding: 0.45rem 0.9rem;
+    }
+
+    /* ── DASHBOARD ── */
+    #dashboard { display: none; }
+
+    .topbar {
+      background: var(--brown-dark);
+      color: white;
+      padding: 0.9rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .topbar__logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .topbar__logo span {
+      font-size: 0.7rem;
+      font-weight: 400;
+      opacity: 0.7;
+      display: block;
+      letter-spacing: 0.5px;
+    }
+
+    .topbar__right {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .topbar__sair {
+      background: rgba(255,255,255,0.12);
+      color: white;
+      border: none;
+      padding: 0.45rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .topbar__sair:hover { background: rgba(255,255,255,0.22); }
+
+    /* ── STATS ── */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.75rem;
+      padding: 1.25rem 1.25rem 0;
+    }
+
+    .stat-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 1rem;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .stat-card__num {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--brown-mid);
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-card__label {
+      font-size: 0.75rem;
+      color: var(--gray);
+      font-weight: 500;
+    }
+
+    .stat-card--green .stat-card__num { color: var(--green); }
+    .stat-card--amber .stat-card__num { color: var(--amber); }
+
+    /* ── FILTROS ── */
+    .filtros {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      padding: 1rem 1.25rem 0;
+      align-items: center;
+    }
+
+    .filtro-btn {
+      padding: 0.4rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1.5px solid var(--border);
+      background: white;
+      color: var(--gray);
+      transition: all 0.15s;
+    }
+
+    .filtro-btn.active {
+      background: var(--brown-mid);
+      color: white;
+      border-color: var(--brown-mid);
+    }
+
+    .busca {
+      margin-left: auto;
+      padding: 0.4rem 0.75rem;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.85rem;
+      outline: none;
+      background: white;
+      min-width: 180px;
+      transition: border-color 0.2s;
+    }
+
+    .busca:focus { border-color: var(--brown-mid); }
+
+    /* ── LISTA ── */
+    .lista-wrap {
+      padding: 1rem 1.25rem 2rem;
+    }
+
+    .lista-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .lista-titulo {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--brown-dark);
+    }
+
+    .btn-refresh {
+      background: none;
+      border: none;
+      font-size: 1.1rem;
+      cursor: pointer;
+      padding: 0.25rem;
+      border-radius: 6px;
+      transition: background 0.15s;
+      color: var(--brown-mid);
+    }
+
+    .btn-refresh:hover { background: var(--cream-dark); }
+
+    .pedidos-grid {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .pedido-card {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1rem 1.25rem;
+      border-left: 4px solid transparent;
+      transition: transform 0.1s;
+    }
+
+    .pedido-card:hover { transform: translateY(-1px); }
+    .pedido-card--pendente { border-left-color: var(--amber); }
+    .pedido-card--entregue { border-left-color: var(--green); opacity: 0.75; }
+    .pedido-card--cancelado { border-left-color: var(--gray); opacity: 0.6; }
+
+    .pedido-card__top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-bottom: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .pedido-card__nome {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .pedido-card__info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 1rem;
+      font-size: 0.8rem;
+      color: var(--gray);
+      margin-bottom: 0.75rem;
+    }
+
+    .pedido-card__info strong { color: var(--brown-dark); }
+
+    .pedido-card__actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    /* ── BADGE ── */
+    .badge {
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    .badge--pendente { background: var(--amber-light); color: var(--amber); }
+    .badge--entregue { background: var(--green-light); color: var(--green); }
+    .badge--cancelado { background: var(--gray-light); color: var(--gray); }
+
+    /* ── VAZIO / LOADING ── */
+    .estado-central {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--gray);
+    }
+
+    .estado-central__icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    .estado-central__txt { font-size: 0.9rem; }
+
+    .spinner {
+      width: 28px; height: 28px;
+      border: 3px solid var(--cream-dark);
+      border-top-color: var(--brown-mid);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      margin: 0 auto 0.75rem;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── TOAST ── */
+    .toast-admin {
+      position: fixed;
+      bottom: 1.25rem;
+      right: 1.25rem;
+      background: var(--brown-dark);
+      color: white;
+      padding: 0.75rem 1.25rem;
+      border-radius: 10px;
+      font-size: 0.875rem;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all 0.25s;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    .toast-admin.show { opacity: 1; transform: translateY(0); }
+
+    /* ── MODAL CONFIRMAÇÃO ── */
+    .modal-bg {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .modal-bg.show { display: flex; }
+
+    .modal-box {
+      background: white;
+      border-radius: var(--radius);
+      padding: 1.75rem 1.5rem;
+      max-width: 380px;
+      width: 100%;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    .modal-box h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .modal-box p { font-size: 0.875rem; color: var(--gray); margin-bottom: 1.25rem; }
+    .modal-box .acoes { display: flex; gap: 0.75rem; justify-content: center; }
+
+    @media (max-width: 500px) {
+      .filtros { gap: 0.35rem; }
+      .busca { min-width: 100%; }
+      .pedido-card__top { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ TELA DE LOGIN ══════════════ -->
+<div id="loginScreen">
+  <div class="login-box">
+    <p style="font-size:2rem;margin-bottom:0.5rem">🍫</p>
+    <h1>Painel Admin</h1>
+    <p>Browní · Acesso restrito</p>
+    <input type="password" id="senhaInput" placeholder="Senha" autocomplete="current-password" />
+    <p class="error" id="loginErro"></p>
+    <button class="btn btn--primary" id="btnLogin">Entrar</button>
+  </div>
+</div>
+
+<!-- ══════════════ DASHBOARD ══════════════ -->
+<div id="dashboard">
+
+  <div class="topbar">
+    <div class="topbar__logo">
+      Browní
+      <span>painel administrativo</span>
+    </div>
+    <div class="topbar__right">
+      <span id="topbarHora" style="font-size:0.75rem;opacity:0.6"></span>
+      <button class="topbar__sair" id="btnSair">← Sair</button>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats" id="statsArea">
+    <div class="stat-card stat-card--amber">
+      <div class="stat-card__num" id="statPendentes">—</div>
+      <div class="stat-card__label">Pendentes</div>
+    </div>
+    <div class="stat-card stat-card--amber">
+      <div class="stat-card__num" id="statBrownies">—</div>
+      <div class="stat-card__label">Brownies pendentes</div>
+    </div>
+    <div class="stat-card stat-card--green">
+      <div class="stat-card__num" id="statEntregues">—</div>
+      <div class="stat-card__label">Entregues hoje</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card__num" id="statTotal">—</div>
+      <div class="stat-card__label">Total de pedidos</div>
+    </div>
+  </div>
+
+  <!-- Filtros -->
+  <div class="filtros">
+    <button class="filtro-btn active" data-filtro="todos">Todos</button>
+    <button class="filtro-btn" data-filtro="pendente">Pendentes</button>
+    <button class="filtro-btn" data-filtro="entregue">Entregues</button>
+    <button class="filtro-btn" data-filtro="cancelado">Cancelados</button>
+    <input type="search" class="busca" id="buscaInput" placeholder="Buscar nome ou telefone…" />
+  </div>
+
+  <!-- Lista de pedidos -->
+  <div class="lista-wrap">
+    <div class="lista-header">
+      <span class="lista-titulo" id="listaTitulo">Pedidos</span>
+      <button class="btn-refresh" id="btnRefresh" title="Atualizar">🔄</button>
+    </div>
+    <div class="pedidos-grid" id="pedidosGrid">
+      <div class="estado-central">
+        <div class="spinner"></div>
+        <p class="estado-central__txt">Carregando pedidos…</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════ MODAL CONFIRMAÇÃO ══════════════ -->
+<div class="modal-bg" id="modalConfirm">
+  <div class="modal-box">
+    <p id="modalIcon" style="font-size:2rem;margin-bottom:0.25rem">✅</p>
+    <h3 id="modalTitulo">Marcar como entregue?</h3>
+    <p id="modalTexto">Confirma que o pedido foi entregue?</p>
+    <div class="acoes">
+      <button class="btn btn--ghost" id="modalCancelar">Cancelar</button>
+      <button class="btn btn--green" id="modalConfirmar">Confirmar</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast-admin" id="toastAdmin"></div>
+
+<script>
+// ── CONFIG ────────────────────────────────────────────────
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwz1N5fOWSCDpL2exqALdnkayiQ29sO2bBD43jmklwzP1disYIvgrxiLpXuPUvrdP7KqQ/exec';
+const ADMIN_KEY  = 'browni2026@dmin';
+
+// ── ESTADO ───────────────────────────────────────────────
+let todosPedidos = [];
+let filtroAtual  = 'todos';
+let buscaAtual   = '';
+let modalCallback = null;
+
+// ── UTILS ─────────────────────────────────────────────────
+function toast(msg, dur = 3000) {
+  const el = document.getElementById('toastAdmin');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(el._t);
+  el._t = setTimeout(() => el.classList.remove('show'), dur);
+}
+
+function fmtTel(tel) {
+  const d = String(tel).replace(/\D/g, '');
+  if (d.length === 11) return `(${d.slice(0,2)}) ${d.slice(2,7)}-${d.slice(7)}`;
+  if (d.length === 10) return `(${d.slice(0,2)}) ${d.slice(2,6)}-${d.slice(6)}`;
+  return tel;
+}
+
+function wppLink(tel, nome) {
+  const num = String(tel).replace(/\D/g, '');
+  const msg = encodeURIComponent(`Olá ${nome}! Seu brownie está pronto para entrega 🍫🎉`);
+  return `https://wa.me/55${num}?text=${msg}`;
+}
+
+function hojeStr() {
+  return new Date().toLocaleDateString('pt-BR');
+}
+
+// ── AUTH ──────────────────────────────────────────────────
+function estaLogado() {
+  return sessionStorage.getItem(ADMIN_KEY) === 'ok';
+}
+
+function logar() { sessionStorage.setItem(ADMIN_KEY, 'ok'); }
+function deslogar() { sessionStorage.removeItem(ADMIN_KEY); sessionStorage.removeItem('browniAdminSenha'); }
+
+// ── LOGIN ─────────────────────────────────────────────────
+document.getElementById('btnLogin').addEventListener('click', fazerLogin);
+document.getElementById('senhaInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') fazerLogin();
+});
+
+async function fazerLogin() {
+  const senha = document.getElementById('senhaInput').value.trim();
+  const erroEl = document.getElementById('loginErro');
+  const btn = document.getElementById('btnLogin');
+  if (!senha) { erroEl.textContent = 'Digite a senha.'; return; }
+
+  btn.disabled = true;
+  btn.textContent = 'Verificando…';
+  erroEl.textContent = '';
+
+  try {
+    const url = `${SCRIPT_URL}?acao=loginAdmin&senha=${encodeURIComponent(senha)}`;
+    const r   = await fetch(url);
+    const res = await r.json();
+    if (res.ok) {
+// salva senha no login para uso nas chamadas à API
+      sessionStorage.setItem('browniAdminSenha', senha);
+      logar();
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('dashboard').style.display = 'block';
+      iniciarDashboard();
+    } else {
+      erroEl.textContent = '❌ Senha incorreta.';
+    }
+  } catch {
+    erroEl.textContent = '❌ Erro de conexão. Verifique sua internet.';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Entrar';
+  }
+}
+
+// ── SAIR ──────────────────────────────────────────────────
+document.getElementById('btnSair').addEventListener('click', () => {
+  deslogar();
+  document.getElementById('dashboard').style.display = 'none';
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('senhaInput').value = '';
+});
+
+// ── INIT DASHBOARD ────────────────────────────────────────
+function iniciarDashboard() {
+  atualizarHora();
+  setInterval(atualizarHora, 60000);
+  carregarPedidos();
+  configurarFiltros();
+  document.getElementById('btnRefresh').addEventListener('click', carregarPedidos);
+  document.getElementById('buscaInput').addEventListener('input', e => {
+    buscaAtual = e.target.value.toLowerCase();
+    renderizar();
+  });
+}
+
+function atualizarHora() {
+  const el = document.getElementById('topbarHora');
+  if (el) el.textContent = new Date().toLocaleTimeString('pt-BR', { hour:'2-digit', minute:'2-digit' });
+}
+
+// ── CARREGAR PEDIDOS ──────────────────────────────────────
+async function carregarPedidos() {
+  const senhaGuardada = sessionStorage.getItem('browniAdminSenha') || '';
+  const grid = document.getElementById('pedidosGrid');
+  grid.innerHTML = `<div class="estado-central"><div class="spinner"></div><p class="estado-central__txt">Carregando…</p></div>`;
+
+  try {
+    const url = `${SCRIPT_URL}?acao=listarPedidosAdmin&senha=${encodeURIComponent(senhaGuardada)}`;
+    const r   = await fetch(url);
+    const res = await r.json();
+
+    if (!res.ok) {
+      if (res.motivo === 'acesso_negado') { deslogar(); location.reload(); return; }
+      grid.innerHTML = `<div class="estado-central"><p class="estado-central__icon">⚠️</p><p class="estado-central__txt">Erro ao carregar pedidos.</p></div>`;
+      return;
+    }
+
+    todosPedidos = res.pedidos || [];
+    atualizarStats();
+    renderizar();
+  } catch {
+    grid.innerHTML = `<div class="estado-central"><p class="estado-central__icon">📡</p><p class="estado-central__txt">Erro de conexão.</p></div>`;
+  }
+}
+
+// ── STATS ─────────────────────────────────────────────────
+function atualizarStats() {
+  const pendentes = todosPedidos.filter(p => (p.status||'pendente').toLowerCase() === 'pendente');
+  const entregueHoje = todosPedidos.filter(p => {
+    return (p.status||'').toLowerCase() === 'entregue' && String(p.data).includes(hojeStr());
+  });
+
+  document.getElementById('statPendentes').textContent  = pendentes.length;
+  document.getElementById('statBrownies').textContent   = pendentes.reduce((s,p) => s + (Number(p.quantidade)||0), 0);
+  document.getElementById('statEntregues').textContent  = entregueHoje.length;
+  document.getElementById('statTotal').textContent      = todosPedidos.length;
+}
+
+// ── FILTROS ───────────────────────────────────────────────
+function configurarFiltros() {
+  document.querySelectorAll('.filtro-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      filtroAtual = btn.dataset.filtro;
+      renderizar();
+    });
+  });
+}
+
+// ── RENDERIZAR ────────────────────────────────────────────
+function renderizar() {
+  const grid = document.getElementById('pedidosGrid');
+
+  let lista = todosPedidos;
+
+  if (filtroAtual !== 'todos') {
+    lista = lista.filter(p => (p.status||'pendente').toLowerCase() === filtroAtual);
+  }
+
+  if (buscaAtual) {
+    lista = lista.filter(p =>
+      String(p.nome||'').toLowerCase().includes(buscaAtual) ||
+      String(p.telefone||'').includes(buscaAtual)
+    );
+  }
+
+  document.getElementById('listaTitulo').textContent =
+    `${lista.length} pedido${lista.length !== 1 ? 's' : ''}${filtroAtual !== 'todos' ? ' · ' + filtroAtual : ''}`;
+
+  if (lista.length === 0) {
+    grid.innerHTML = `<div class="estado-central"><p class="estado-central__icon">🍫</p><p class="estado-central__txt">Nenhum pedido encontrado.</p></div>`;
+    return;
+  }
+
+  grid.innerHTML = '';
+  lista.forEach(p => grid.appendChild(criarCard(p)));
+}
+
+// ── CARD ──────────────────────────────────────────────────
+function criarCard(pedido) {
+  const status    = (pedido.status||'pendente').toLowerCase();
+  const isPend    = status === 'pendente';
+  const qtd       = Number(pedido.quantidade) || 1;
+  const valorFmt  = 'R$ ' + (qtd * 7).toFixed(2).replace('.', ',');
+  const badgeMap  = {
+    pendente:  { cls: 'badge--pendente',  txt: '⏳ Pendente'  },
+    entregue:  { cls: 'badge--entregue',  txt: '✅ Entregue'  },
+    cancelado: { cls: 'badge--cancelado', txt: '❌ Cancelado' },
+  };
+  const badge = badgeMap[status] || badgeMap['pendente'];
+
+  const card = document.createElement('div');
+  card.className = `pedido-card pedido-card--${status}`;
+  card.innerHTML = `
+    <div class="pedido-card__top">
+      <span class="pedido-card__nome">${pedido.nome || '—'}</span>
+      <span class="badge ${badge.cls}">${badge.txt}</span>
+    </div>
+    <div class="pedido-card__info">
+      <span>📱 <strong>${fmtTel(pedido.telefone)}</strong></span>
+      ${pedido.instagram && pedido.instagram !== '-' ? `<span>📸 <strong>${pedido.instagram}</strong></span>` : ''}
+      <span>🍫 <strong>${qtd}x brownie${qtd > 1 ? 's' : ''}</strong></span>
+      <span>💰 <strong>${valorFmt}</strong></span>
+      <span>📅 <strong>${pedido.data || '—'}</strong></span>
+    </div>
+    <div class="pedido-card__actions">
+      ${isPend ? `
+        <button class="btn btn--green" data-action="entregar">✅ Marcar entregue</button>
+        <a class="btn btn--wpp" href="${wppLink(pedido.telefone, pedido.nome)}" target="_blank" rel="noopener">💬 WhatsApp</a>
+      ` : `
+        <a class="btn btn--wpp" href="${wppLink(pedido.telefone, pedido.nome)}" target="_blank" rel="noopener">💬 WhatsApp</a>
+      `}
+    </div>
+  `;
+
+  card.querySelector('[data-action="entregar"]')?.addEventListener('click', () => {
+    abrirModal(
+      '✅',
+      'Marcar como entregue?',
+      `Confirmar entrega para <strong>${pedido.nome}</strong>? Os selos já foram contabilizados no pedido.`,
+      'Marcar entregue',
+      'btn--green',
+      () => marcarEntregue(pedido.telefone, pedido.nome, card)
+    );
+  });
+
+  return card;
+}
+
+// ── MARCAR ENTREGUE ───────────────────────────────────────
+async function marcarEntregue(tel, nome, card) {
+  const senhaGuardada = sessionStorage.getItem('browniAdminSenha') || '';
+  const telLimpo = String(tel).replace(/\D/g, '');
+
+  try {
+    const url = `${SCRIPT_URL}?acao=marcarEntregue&telefone=${encodeURIComponent(telLimpo)}&senha=${encodeURIComponent(senhaGuardada)}`;
+    const r   = await fetch(url);
+    const res = await r.json();
+
+    if (res.ok) {
+      toast(`✅ Pedido de ${nome} marcado como entregue!`);
+      carregarPedidos();
+    } else {
+      toast('❌ Erro ao atualizar. Tente novamente.');
+    }
+  } catch {
+    toast('❌ Erro de conexão.');
+  }
+}
+
+// ── MODAL ─────────────────────────────────────────────────
+function abrirModal(icon, titulo, texto, btnTxt, btnCls, callback) {
+  document.getElementById('modalIcon').textContent    = icon;
+  document.getElementById('modalTitulo').textContent  = titulo;
+  document.getElementById('modalTexto').innerHTML     = texto;
+  const btnConf = document.getElementById('modalConfirmar');
+  btnConf.textContent = btnTxt;
+  btnConf.className   = `btn ${btnCls}`;
+  modalCallback = callback;
+  document.getElementById('modalConfirm').classList.add('show');
+}
+
+document.getElementById('modalCancelar').addEventListener('click', () => {
+  document.getElementById('modalConfirm').classList.remove('show');
+  modalCallback = null;
+});
+
+document.getElementById('modalConfirmar').addEventListener('click', () => {
+  document.getElementById('modalConfirm').classList.remove('show');
+  if (modalCallback) modalCallback();
+  modalCallback = null;
+});
+
+document.getElementById('modalConfirm').addEventListener('click', e => {
+  if (e.target === e.currentTarget) {
+    e.currentTarget.classList.remove('show');
+    modalCallback = null;
+  }
+});
+
+// ── INIT ──────────────────────────────────────────────────
+(function init() {
+  if (estaLogado()) {
+    // Pede a senha uma vez para usar nas chamadas API
+    // (ela já foi validada pelo loginAdmin no primeiro login)
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    iniciarDashboard();
+  }
+})();
+</script>
+
+</body>
+</html>
