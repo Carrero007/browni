@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Browní · Admin ERP</title>
   <meta name="robots" content="noindex, nofollow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -64,6 +64,7 @@
       background: var(--c-bg);
       color: var(--c-text);
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
     /* ── SCROLLBAR ── */
@@ -77,6 +78,7 @@
     ════════════════════════════════════ */
     #loginScreen {
       min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -87,6 +89,7 @@
         radial-gradient(ellipse at 60% 50%, rgba(192,117,69,0.08) 0%, transparent 60%);
       position: relative;
       overflow: hidden;
+      padding: 1rem;
     }
 
     #loginScreen::before {
@@ -157,6 +160,8 @@
       color: var(--c-text);
       outline: none;
       transition: border-color 0.18s, box-shadow 0.18s, background 0.18s;
+      /* Prevent iOS zoom on focus */
+      font-size: max(16px, 0.93rem);
     }
 
     .form-input:focus {
@@ -182,6 +187,10 @@
       transition: opacity 0.15s, transform 0.12s, box-shadow 0.15s;
       text-decoration: none;
       letter-spacing: 0.01em;
+      /* Better tap targets on mobile */
+      min-height: 36px;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
     }
     .btn:hover { opacity: 0.87; }
     .btn:active { transform: scale(0.97); }
@@ -194,7 +203,7 @@
     }
     .btn-primary:hover { box-shadow: 0 4px 18px rgba(74,32,8,0.35), 0 2px 6px rgba(74,32,8,0.2); opacity: 1; }
     .btn-full { width: 100%; justify-content: center; padding: 0.8rem; font-size: 0.95rem; }
-    .btn-sm { padding: 0.33rem 0.75rem; font-size: 0.77rem; }
+    .btn-sm { padding: 0.33rem 0.75rem; font-size: 0.77rem; min-height: 30px; }
     .btn-green { background: linear-gradient(135deg, #1d8a52 0%, var(--c-green) 100%); color: white; box-shadow: 0 2px 8px rgba(22,104,64,0.25); }
     .btn-red { background: linear-gradient(135deg, #c41f1f 0%, var(--c-red) 100%); color: white; box-shadow: 0 2px 8px rgba(165,24,24,0.25); }
     .btn-amber { background: linear-gradient(135deg, #d49b10 0%, var(--c-gold) 100%); color: white; }
@@ -217,12 +226,16 @@
         radial-gradient(ellipse at 0% 100%, rgba(122,58,16,0.18) 0%, transparent 60%),
         radial-gradient(ellipse at 100% 0%, rgba(75,30,8,0.15) 0%, transparent 50%);
       min-height: 100vh;
+      min-height: 100dvh;
       position: fixed;
       left: 0; top: 0;
       display: flex; flex-direction: column;
       z-index: 50;
       transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
       border-right: 1px solid rgba(255,255,255,0.04);
+      /* Safe area for notch phones */
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
     }
 
     .sidebar-logo {
@@ -252,6 +265,7 @@
       flex: 1;
       padding: 0.75rem 0;
       overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
 
     .nav-section {
@@ -274,6 +288,10 @@
       border-left: 2.5px solid transparent;
       margin: 1px 0;
       position: relative;
+      /* Better tap target */
+      min-height: 44px;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .nav-item:hover {
@@ -316,6 +334,8 @@
       transition: background 0.12s, color 0.12s;
       background: none; border: none; font-family: inherit; width: 100%;
       letter-spacing: 0.01em;
+      min-height: 44px;
+      touch-action: manipulation;
     }
     .sidebar-sair:hover { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.65); }
 
@@ -323,6 +343,7 @@
     .main-wrap {
       margin-left: var(--sidebar-w);
       min-height: 100vh;
+      min-height: 100dvh;
       display: flex; flex-direction: column;
       flex: 1;
     }
@@ -336,6 +357,9 @@
       position: sticky; top: 0; z-index: 40;
       backdrop-filter: blur(8px);
       background: rgba(254,252,249,0.92);
+      /* Safe area for notched phones */
+      padding-left: max(1.75rem, env(safe-area-inset-left));
+      padding-right: max(1.75rem, env(safe-area-inset-right));
     }
 
     .topbar-title {
@@ -352,6 +376,8 @@
       padding: 1.75rem;
       max-width: 1200px;
       width: 100%;
+      /* Safe area bottom */
+      padding-bottom: max(1.75rem, env(safe-area-inset-bottom));
     }
 
     /* ── PAGES ── */
@@ -787,6 +813,9 @@
       background: var(--c-surface); color: var(--c-muted);
       transition: all 0.15s; font-family: inherit;
       letter-spacing: 0.01em;
+      min-height: 34px;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
     }
     .filter-btn.active {
       background: var(--c-brand);
@@ -803,6 +832,8 @@
       background: var(--c-surface); color: var(--c-text);
       outline: none; transition: border-color 0.18s, box-shadow 0.18s;
       min-width: 210px;
+      /* Prevent iOS zoom */
+      font-size: max(16px, 0.85rem);
     }
     .search-input:focus { border-color: var(--c-brand3); box-shadow: 0 0 0 3px rgba(192,117,69,0.1); }
 
@@ -812,9 +843,13 @@
     .menu-toggle {
       display: none;
       background: none; border: none; cursor: pointer;
-      color: var(--c-text); font-size: 1.25rem; padding: 0.3rem;
+      color: var(--c-text); font-size: 1.25rem; padding: 0.5rem;
       border-radius: var(--r-sm);
       transition: background 0.12s;
+      min-width: 44px; min-height: 44px;
+      align-items: center; justify-content: center;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
     }
     .menu-toggle:hover { background: var(--c-bg-alt); }
 
@@ -826,14 +861,14 @@
     }
 
     /* ════════════════════════════════════
-       RESPONSIVE
+       RESPONSIVE — TABLET (768px)
     ════════════════════════════════════ */
     @media (max-width: 768px) {
       :root { --sidebar-w: 0px; }
       .sidebar { transform: translateX(-252px); width: 252px; }
       .sidebar.open { transform: translateX(0); }
       .sidebar-overlay.show { display: block; }
-      .menu-toggle { display: block; }
+      .menu-toggle { display: flex; }
       .main-wrap { margin-left: 0; }
       .page-content { padding: 1rem; }
       .metrics-grid { grid-template-columns: repeat(2, 1fr); }
@@ -844,13 +879,162 @@
       .modal-box { padding: 1.35rem; }
     }
 
-    @media (max-width: 400px) {
-      .metrics-grid { grid-template-columns: 1fr 1fr; }
-      .metric-value { font-size: 1.5rem; }
+    /* ════════════════════════════════════
+       RESPONSIVE — MOBILE (640px)
+    ════════════════════════════════════ */
+    @media (max-width: 640px) {
+      .filter-bar {
+        gap: 0.4rem;
+      }
+      /* Search on its own line */
+      .filter-bar .search-input {
+        width: 100%;
+        min-width: 0;
+        order: -1;
+      }
+      /* Filter pills scroll row */
+      .filter-pills-row {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        gap: 0.4rem;
+        scrollbar-width: none;
+        padding-bottom: 2px;
+      }
+      .filter-pills-row::-webkit-scrollbar { display: none; }
+
+      table { font-size: 0.78rem; }
+      th { font-size: 0.62rem; padding: 0.55rem 0.6rem; }
+      td { padding: 0.6rem 0.6rem; }
+
+      td .actions {
+        flex-direction: column;
+        gap: 0.3rem;
+        align-items: flex-start;
+      }
+      td .actions .btn {
+        width: 100%;
+        justify-content: center;
+        font-size: 0.73rem;
+      }
+
+      .form-panel { padding: 1rem; }
+      .chart-wrap { height: 155px; }
+
+      .cards-grid { grid-template-columns: 1fr; }
+      .item-card-footer { flex-direction: column; align-items: flex-start; }
+      .item-card-footer .actions { width: 100%; }
+      .item-card-footer .actions .btn { flex: 1; justify-content: center; }
+
+      /* Table scroll gradient hint */
+      .table-scroll {
+        position: relative;
+      }
+      .table-scroll::after {
+        content: '';
+        position: absolute;
+        top: 0; right: 0; bottom: 0;
+        width: 20px;
+        background: linear-gradient(to left, var(--c-surface), transparent);
+        pointer-events: none;
+        border-radius: 0 var(--r) var(--r) 0;
+      }
+
+      .fin-grid { grid-template-columns: 1fr 1fr; gap: 0.65rem; }
+      .fin-value { font-size: 1.3rem; }
+      .fin-card { padding: 1rem 1rem; }
+
+      .section-head { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+      .section-head .btn { width: 100%; justify-content: center; }
+      /* Exception: keep fin filtros inline */
+      #page-financeiro .section-head { flex-direction: row; align-items: center; }
+      #page-financeiro .section-head > div {
+        display: flex;
+        overflow-x: auto;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+        gap: 0.35rem;
+        flex-wrap: nowrap;
+      }
+      #page-financeiro .section-head > div::-webkit-scrollbar { display: none; }
+      #page-financeiro .filter-btn { flex-shrink: 0; }
+
+      .modal-bg { padding: 0; align-items: flex-end; }
+      .modal-box {
+        border-radius: var(--r-lg) var(--r-lg) 0 0;
+        padding: 1.5rem 1.25rem 2rem;
+        max-width: 100%;
+        max-height: 92dvh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .modal-wide { max-width: 100%; }
+      .modal-actions { flex-direction: column-reverse; gap: 0.5rem; }
+      .modal-actions .btn { width: 100%; justify-content: center; }
+
+      .toast {
+        bottom: max(1rem, env(safe-area-inset-bottom));
+        left: 1rem;
+        right: 1rem;
+        max-width: 100%;
+        text-align: center;
+        font-size: 0.82rem;
+      }
+
+      .alert { padding: 0.75rem 0.85rem; font-size: 0.79rem; }
+
+      .loading-inline { padding: 1.25rem 0.75rem; font-size: 0.82rem; }
+
+      .producao-big { font-size: 2.6rem; }
+      .producao-card { padding: 1.25rem 1rem; }
     }
 
-    /* Scrollable table on small screens */
-    .table-scroll { overflow-x: auto; }
+    /* ════════════════════════════════════
+       RESPONSIVE — SMALL MOBILE (480px)
+    ════════════════════════════════════ */
+    @media (max-width: 480px) {
+      .page-content { padding: 0.75rem; }
+
+      .topbar { padding: 0 0.9rem; }
+      .topbar-title { font-size: 0.9rem; }
+      .topbar-time { display: none; }
+      #topbarRefresh { display: none; }
+
+      .metrics-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.6rem;
+        margin-bottom: 1.25rem;
+      }
+      .metric-card { padding: 0.9rem 0.9rem; }
+      .metric-value { font-size: 1.4rem; }
+      .metric-label { font-size: 0.62rem; }
+      .metric-sub { font-size: 0.64rem; }
+
+      .fin-grid { grid-template-columns: 1fr; gap: 0.6rem; }
+
+      .badge { font-size: 0.62rem; padding: 0.15rem 0.45rem; }
+
+      .form-label { font-size: 0.67rem; }
+      .form-input { padding: 0.65rem 0.8rem; }
+      select.form-input { padding-right: 1.75rem; }
+
+      .login-card { padding: 2rem 1.5rem; }
+      .login-logo { font-size: 2rem; }
+
+      .chart-wrap { height: 140px; }
+    }
+
+    /* ════════════════════════════════════
+       RESPONSIVE — TINY (360px)
+    ════════════════════════════════════ */
+    @media (max-width: 360px) {
+      .metrics-grid { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+      .metric-value { font-size: 1.25rem; }
+      .sidebar-logo-name { font-size: 1.5rem; }
+      .topbar-title { font-size: 0.85rem; }
+      .page-content { padding: 0.6rem; }
+    }
 
     /* ── TRANSITION PAGE ── */
     .page { animation: pageFade 0.2s ease; }
@@ -1077,10 +1261,10 @@
       <!-- ════════════ PEDIDOS ════════════ -->
       <div class="page" id="page-pedidos">
         <div class="filter-bar" id="pedidosFilters">
+          <input type="search" class="search-input" id="pedidosBusca" placeholder="Buscar nome ou telefone…" />
           <button class="filter-btn active" data-filtro="todos">Todos</button>
           <button class="filter-btn" data-filtro="pendente">⏳ Pendentes</button>
           <button class="filter-btn" data-filtro="entregue">✅ Entregues</button>
-          <input type="search" class="search-input" id="pedidosBusca" placeholder="Buscar nome ou telefone…" />
         </div>
         <div class="table-wrap table-scroll">
           <table>
@@ -1114,11 +1298,11 @@
             </div>
             <div class="form-group">
               <label class="form-label">Quantidade</label>
-              <input class="form-input" type="number" id="vpdvQtd" min="1" value="1" />
+              <input class="form-input" type="number" id="vpdvQtd" min="1" value="1" inputmode="numeric" />
             </div>
             <div class="form-group">
               <label class="form-label">Valor Unitário (R$)</label>
-              <input class="form-input" type="number" id="vpdvVal" value="7" step="0.5" />
+              <input class="form-input" type="number" id="vpdvVal" value="7" step="0.5" inputmode="decimal" />
             </div>
             <div class="form-group">
               <label class="form-label">Status Pagto</label>
@@ -1181,11 +1365,11 @@
             </div>
             <div class="form-group">
               <label class="form-label">Quantidade</label>
-              <input class="form-input" type="number" id="movQtd" min="0.01" step="0.01" value="1" />
+              <input class="form-input" type="number" id="movQtd" min="0.01" step="0.01" value="1" inputmode="decimal" />
             </div>
             <div class="form-group">
               <label class="form-label">Valor Gasto (R$)</label>
-              <input class="form-input" type="number" id="movValor" step="0.01" value="0" placeholder="só pra entrada" />
+              <input class="form-input" type="number" id="movValor" step="0.01" value="0" placeholder="só pra entrada" inputmode="decimal" />
             </div>
           </div>
           <div class="form-group" style="margin-bottom:0.75rem">
@@ -1270,7 +1454,7 @@
             </div>
             <div class="form-group">
               <label class="form-label">Valor (R$)</label>
-              <input class="form-input" type="number" id="finValor" step="0.01" placeholder="0,00" />
+              <input class="form-input" type="number" id="finValor" step="0.01" placeholder="0,00" inputmode="decimal" />
             </div>
             <div class="form-group">
               <label class="form-label">Descrição</label>
@@ -1418,6 +1602,7 @@ const SESS_SENHA = 'browni_adm_pw';
 let STATE = {
   pedidos:    [],
   pdvs:       [],
+  vendasPDV:  [],
   estoque:    [],
   movs:       [],
   financeiro: [],
@@ -1624,7 +1809,7 @@ function carregarPagina(id) {
     producao:   carregarProducao,
     financeiro: carregarFinanceiro,
     clientes:   carregarClientes,
-    relatorios: () => {} // manual
+    relatorios: () => {}
   };
   if (loaders[id]) loaders[id]();
 }
@@ -1648,7 +1833,6 @@ async function carregarDashboard() {
     const pdvs     = resPDV.pdvs || [];
     const finRes   = resFin.resumo || {};
 
-    // Métricas
     const pendentes = pedidos.filter(p => (p.status||'').toLowerCase() === 'pendente');
     const totalBrownies = pedidos.filter(p => (p.status||'').toLowerCase() === 'entregue')
       .reduce((s,p) => s + (Number(p.quantidade)||0), 0);
@@ -1663,17 +1847,14 @@ async function carregarDashboard() {
     document.getElementById('mReceitas').textContent  = producao.maxBrownies ?? '—';
     document.getElementById('mMelhorPDV').textContent = melhorPDV ? melhorPDV.nome : '—';
 
-    // Alertas
     const alertas = [];
     if (pendentes.length > 0) alertas.push(`<div class="alert alert-warn">⏳ Você tem <strong>${pendentes.length} pedido(s) pendente(s)</strong> aguardando entrega.</div>`);
     if (estoqueBaixo > 0)     alertas.push(`<div class="alert alert-warn">📦 <strong>${estoqueBaixo} ingrediente(s)</strong> abaixo do estoque mínimo!</div>`);
     if ((producao.maxBrownies||0) < 10) alertas.push(`<div class="alert alert-warn">🏭 Estoque para apenas <strong>${producao.maxBrownies||0} brownies</strong>. Considere repor!</div>`);
     document.getElementById('dashAlertas').innerHTML = alertas.join('');
 
-    // Gráficos
     renderCharts(pedidos, resFin.lancamentos || [], estoque);
 
-    // Cache
     STATE.pedidos   = pedidos;
     STATE.estoque   = estoque;
     STATE.financeiro = resFin.lancamentos || [];
@@ -1687,11 +1868,9 @@ async function carregarDashboard() {
 }
 
 function renderCharts(pedidos, financeiro, estoque) {
-  // Destroy old
   Object.values(charts).forEach(c => { try{ c.destroy(); }catch{} });
   charts = {};
 
-  // Chart 1: Status dos pedidos
   const statusCount = { pendente: 0, entregue: 0, cancelado: 0 };
   pedidos.forEach(p => { const s = (p.status||'pendente').toLowerCase(); if(statusCount[s]!==undefined) statusCount[s]++; });
   const ctx1 = document.getElementById('chartStatus');
@@ -1707,7 +1886,6 @@ function renderCharts(pedidos, financeiro, estoque) {
     });
   }
 
-  // Chart 2: Fin entradas vs saídas
   const totalEnt = financeiro.filter(l=>l.tipo==='entrada').reduce((s,l)=>s+l.valor,0);
   const totalSai = financeiro.filter(l=>l.tipo==='saida').reduce((s,l)=>s+l.valor,0);
   const ctx2 = document.getElementById('chartFin');
@@ -1723,7 +1901,6 @@ function renderCharts(pedidos, financeiro, estoque) {
     });
   }
 
-  // Chart 3: Estoque
   const labels = estoque.map(e => e.ingrediente);
   const qtds   = estoque.map(e => e.qtdAtual);
   const colors = estoque.map(e => e.abaixoMinimo ? 'rgba(185,28,28,0.75)' : 'rgba(92,45,10,0.7)');
@@ -1749,7 +1926,6 @@ async function carregarPedidos() {
   } catch { toast('Erro ao carregar pedidos', 'error'); }
 }
 
-// Filtros de pedidos
 document.querySelectorAll('#pedidosFilters .filter-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('#pedidosFilters .filter-btn').forEach(b => b.classList.remove('active'));
@@ -1830,8 +2006,9 @@ async function carregarPDVs() {
   try {
     const res = await api({ acao: 'listarPDVs' });
     STATE.pdvs = res.pdvs || [];
+    STATE.vendasPDV = res.vendasPDV || [];
     renderPDVs();
-    // Popula select de PDVs
+    renderVendasPDV(STATE.vendasPDV);
     const sel = document.getElementById('vpdvSelect');
     sel.innerHTML = '<option value="">Selecione…</option>' + STATE.pdvs.map(p => `<option value="${p.nome}">${p.nome}</option>`).join('');
   } catch { toast('Erro ao carregar PDVs', 'error'); }
@@ -1861,7 +2038,28 @@ function renderPDVs() {
   `).join(''));
 }
 
-// Modal PDV
+function renderVendasPDV(vendas) {
+  const tbody = document.getElementById('vendasPDVTbody');
+  if (!tbody) return;
+  if (!vendas || !vendas.length) {
+    tbody.innerHTML = '<tr><td colspan="7" style="padding:1rem;color:var(--c-muted);text-align:center;font-size:0.85rem">Registre uma venda para ver aqui.</td></tr>';
+    return;
+  }
+  tbody.innerHTML = vendas.slice(0,40).map(v => {
+    const total = (Number(v.quantidade)||0) * (Number(v.valorUnit)||0);
+    const lucro = total * (1 - (Number(v.comissao)||10)/100);
+    return `<tr>
+      <td><strong>${v.pdv||'—'}</strong></td>
+      <td style="font-size:0.78rem;color:var(--c-muted)">${v.data||'—'}</td>
+      <td>${v.quantidade}</td>
+      <td>${r(v.valorUnit||0)}</td>
+      <td>${r(total)}</td>
+      <td style="color:var(--c-green)">${r(lucro)}</td>
+      <td>${badge(v.statusPagto||'pendente')}</td>
+    </tr>`;
+  }).join('');
+}
+
 document.getElementById('btnNovoPDV').addEventListener('click', () => {
   editandoPDV = null;
   document.getElementById('mfTitle').textContent = 'Novo PDV';
@@ -1957,7 +2155,6 @@ function renderEstoque() {
 
   if (!STATE.estoque.length) {
     setHtml('estoqueTbody', '<tr><td colspan="6" style="padding:1.5rem;text-align:center;color:var(--c-muted)">Sem ingredientes. Clique em "Inicializar Padrão".</td></tr>');
-    // Limpa select movimentação
     document.getElementById('movIngr').innerHTML = '<option value="">Selecione…</option>';
     return;
   }
@@ -1971,7 +2168,6 @@ function renderEstoque() {
     <td>${badge(e.abaixoMinimo ? 'baixo' : 'ok')}</td>
   </tr>`).join(''));
 
-  // Popula select de ingredientes para movimentação
   const sel = document.getElementById('movIngr');
   sel.innerHTML = '<option value="">Selecione…</option>' + STATE.estoque.map(e => `<option value="${e.ingrediente}">${e.ingrediente}</option>`).join('');
 }
@@ -2078,7 +2274,6 @@ async function carregarFinanceiro() {
   } catch { toast('Erro ao carregar financeiro', 'error'); }
 }
 
-// Filtros financeiro
 document.querySelectorAll('[data-fin]').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('[data-fin]').forEach(b => b.classList.remove('active'));
@@ -2134,17 +2329,14 @@ document.getElementById('btnFinanceiro').addEventListener('click', async () => {
 async function carregarClientes() {
   setHtml('clientesTbody', '<tr><td colspan="5"><div class="loading-inline"><span class="spinner"></span> Carregando…</div></td></tr>');
   try {
-    // Obtemos clientes via pedidos (usuários cadastrados)
-    // A rota de usuários não tem listagem pública, então simulamos via pedidos únicos
     const res = await api({ acao: 'listarPedidosAdmin' });
     const pedidos = res.pedidos || [];
-    // Agrupa clientes únicos por telefone
     const map = {};
     pedidos.forEach(p => {
-      const tel = String(p.telefone||'').replace(/\D/g,'');
-      if (!map[tel]) map[tel] = { nome: p.nome, telefone: tel, pedidos: 0, brownies: 0 };
-      map[tel].pedidos++;
-      map[tel].brownies += Number(p.quantidade)||0;
+      const t = String(p.telefone||'').replace(/\D/g,'');
+      if (!map[t]) map[t] = { nome: p.nome, telefone: t, pedidos: 0, brownies: 0 };
+      map[t].pedidos++;
+      map[t].brownies += Number(p.quantidade)||0;
     });
     STATE.clientes = Object.values(map);
     renderClientes();
@@ -2250,7 +2442,6 @@ function barStart() {
   _bar.style.transition = 'width 0.3s ease';
   _bar.style.width = '0%';
   clearTimeout(_barTimer);
-  // Simula progresso até 85%
   let pct = 10;
   function step() {
     if (pct < 85) {
@@ -2291,8 +2482,6 @@ function btnDone(id) {
 // ════════════════════════════════════════════════════════
 // MÁSCARAS DE INPUT
 // ════════════════════════════════════════════════════════
-
-// --- Telefone BR: (19) 99999-9999 ou (19) 9999-9999 ---
 function maskTel(input) {
   input.addEventListener('input', function() {
     let v = this.value.replace(/\D/g, '').slice(0, 11);
@@ -2305,7 +2494,6 @@ function maskTel(input) {
     } else {
       this.value = '(' + v.slice(0,2) + ') ' + v.slice(2,7) + '-' + v.slice(7,11);
     }
-    // Feedback de validação
     const digits = this.value.replace(/\D/g,'');
     const hint = document.getElementById('hint' + this.id.charAt(0).toUpperCase() + this.id.slice(1));
     if (digits.length === 0) {
@@ -2319,16 +2507,13 @@ function maskTel(input) {
       if (hint) hint.textContent = 'Digite DDD + número (10 ou 11 dígitos)';
     }
   });
-  // Só números no keydown
   input.addEventListener('keydown', function(e) {
     if (e.key.length === 1 && !/\d/.test(e.key) && !e.ctrlKey && !e.metaKey) e.preventDefault();
   });
 }
 
-// --- Instagram: só permite @ no começo, sem espaços ---
 function maskInsta(input, counterId) {
   input.addEventListener('input', function() {
-    // Remove @ se o usuário digitou (o prefix já mostra @)
     this.value = this.value.replace(/^@/, '').replace(/\s/g, '').slice(0, 30);
     if (counterId) {
       const cc = document.getElementById(counterId);
@@ -2341,7 +2526,6 @@ function maskInsta(input, counterId) {
   });
 }
 
-// --- Comissão %: 0–100, só inteiros ---
 function maskComissao(input, hintId) {
   input.addEventListener('input', function() {
     let v = this.value.replace(/\D/g,'').slice(0,3);
@@ -2367,7 +2551,6 @@ function maskComissao(input, hintId) {
   });
 }
 
-// --- Valor R$: máximo 2 casas decimais, positivo ---
 function maskValor(input, hintId) {
   input.addEventListener('blur', function() {
     const v = parseFloat(this.value);
@@ -2391,7 +2574,6 @@ function maskValor(input, hintId) {
   });
 }
 
-// --- Char counter genérico ---
 function charCounter(input, counterId, max) {
   function update() {
     const cc = document.getElementById(counterId);
@@ -2404,7 +2586,6 @@ function charCounter(input, counterId, max) {
   update();
 }
 
-// --- Quantidade: apenas inteiros positivos ---
 function maskQtd(input) {
   input.addEventListener('input', function() {
     this.value = this.value.replace(/[^0-9]/g,'');
@@ -2419,20 +2600,13 @@ function maskQtd(input) {
 // APLICA MÁSCARAS AOS CAMPOS
 // ════════════════════════════════════════════════════════
 (function aplicarMascaras() {
-  // Modal PDV
   maskTel(document.getElementById('mfTel'));
   maskInsta(document.getElementById('mfInsta'), 'ccMfInsta');
   maskComissao(document.getElementById('mfComissao'), 'hintMfComissao');
   charCounter(document.getElementById('mfEnd'), 'ccMfEnd', 120);
-
-  // Estoque — movimentação
   maskValor(document.getElementById('movValor'));
   maskQtd(document.getElementById('movQtd'));
-
-  // Financeiro — lançamento
   maskValor(document.getElementById('finValor'));
-
-  // PDV venda — quantidade e valor unit
   maskQtd(document.getElementById('vpdvQtd'));
   maskValor(document.getElementById('vpdvVal'));
 })();
@@ -2440,9 +2614,7 @@ function maskQtd(input) {
 // ════════════════════════════════════════════════════════
 // WRAPPERS API COM LOADING BAR
 // ════════════════════════════════════════════════════════
-// Sobrescreve a função api original para sempre acionar a barra
 const _apiOriginal = api;
-// Redefine api com loading bar automático
 window.api = async function(params) {
   barStart();
   try {
@@ -2457,7 +2629,6 @@ window.api = async function(params) {
 // ════════════════════════════════════════════════════════
 (function patchBotoes() {
 
-  // -- Login --
   const btnLoginEl = document.getElementById('btnLogin');
   btnLoginEl.removeEventListener('click', fazerLogin);
   btnLoginEl.addEventListener('click', async function() {
@@ -2466,13 +2637,7 @@ window.api = async function(params) {
     btnDone('btnLogin');
   });
 
-  // -- Gerar Relatório --
   const _btnRel = document.getElementById('btnGerarRel');
-  _btnRel.addEventListener('click', () => btnLoad('btnGerarRel'), true);
-  // O done é chamado quando o relatorio renderizar — patchamos o listener original
-  const origRelClick = _btnRel.onclick;
-  // o listener original já está como addEventListener, então só garantimos o btnDone no finally
-  // Vamos substituir o listener por um wrapped
   _btnRel._wrappedClick = async function() {
     btnLoad('btnGerarRel');
     try {
@@ -2511,9 +2676,7 @@ window.api = async function(params) {
     finally { btnDone('btnGerarRel'); }
   };
 
-  // -- Registrar Venda PDV --
   const _btnVPDV = document.getElementById('btnRegistrarVendaPDV');
-  const _origVPDV = _btnVPDV.onclick;
   _btnVPDV._origClick = async function() {
     const pdv = document.getElementById('vpdvSelect').value;
     const qtd = document.getElementById('vpdvQtd').value;
@@ -2529,7 +2692,6 @@ window.api = async function(params) {
     finally { btnDone('btnRegistrarVendaPDV'); }
   };
 
-  // -- Movimentar Estoque --
   const _btnMov = document.getElementById('btnMovimentar');
   _btnMov._origClick = async function() {
     const tipo  = document.getElementById('movTipo').value;
@@ -2548,7 +2710,6 @@ window.api = async function(params) {
     finally { btnDone('btnMovimentar'); }
   };
 
-  // -- Lançamento Financeiro --
   const _btnFin = document.getElementById('btnFinanceiro');
   _btnFin._origClick = async function() {
     const tipo  = document.getElementById('finTipo').value;
@@ -2570,7 +2731,6 @@ window.api = async function(params) {
     finally { btnDone('btnFinanceiro'); }
   };
 
-  // -- Salvar PDV (modal) --
   const _btnMfSalvar = document.getElementById('mfSalvar');
   _btnMfSalvar._origClick = async function() {
     const nome = document.getElementById('mfNome').value.trim();
@@ -2581,7 +2741,6 @@ window.api = async function(params) {
     }
     document.getElementById('hintMfNome').textContent = '';
     document.getElementById('mfNome').classList.remove('input-err');
-    // Valida telefone
     const telVal = document.getElementById('mfTel').value.replace(/\D/g,'');
     if (telVal && (telVal.length < 10 || telVal.length > 11)) {
       document.getElementById('hintMfTel').textContent = 'Telefone inválido — corrija antes de salvar';
@@ -2609,11 +2768,9 @@ window.api = async function(params) {
     finally { btnDone('mfSalvar'); }
   };
 
-  // Remove listeners originais e substitui pelos wrapped
   function rewire(id, fn) {
     const el = document.getElementById(id);
     if (!el) return;
-    // Clona o elemento para remover todos os listeners antigos
     const clone = el.cloneNode(true);
     el.parentNode.replaceChild(clone, el);
     clone.addEventListener('click', fn);
@@ -2625,7 +2782,6 @@ window.api = async function(params) {
   rewire('mfSalvar', _btnMfSalvar._origClick);
   rewire('btnGerarRel', _btnRel._wrappedClick);
 
-  // InicEstoque — já tem modal de confirmação, só adiciona loading no botão interno do modal
   document.getElementById('btnInicEstoque').addEventListener('click', () => {
     abrirModal(
       'Inicializar estoque padrão',
@@ -2650,7 +2806,6 @@ window.api = async function(params) {
 // ════════════════════════════════════════════════════════
 // FEEDBACK DE LOADING NOS CARREGAMENTOS DE PÁGINA
 // ════════════════════════════════════════════════════════
-// Patch topbarRefresh com loading state
 document.getElementById('topbarRefresh').addEventListener('click', function() {
   this.classList.add('loading');
   this.disabled = true;
